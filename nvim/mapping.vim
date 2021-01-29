@@ -23,8 +23,6 @@ nmap <S-Tab> :bprevious<CR>
 map <Enter> o<ESC>
 map <S-Enter> O<ESC>
 
-" Alternate way to save
-nnoremap <silent> <C-s> :w<CR>
 
 " Alternate way to quit
 nnoremap <silent> <C-q> :wq!<CR>
@@ -46,11 +44,6 @@ noremap <silent><esc> <esc>:noh<CR><esc>
 nnoremap <F2> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
 
 
-" " show mapping on all modes with F1
-nmap <F1> <plug>(fzf-maps-n)
-imap <F1> <plug>(fzf-maps-i)
-vmap <F1> <plug>(fzf-maps-x)
-
 "" coc
 
 " use tab to navigate snippet placeholders
@@ -63,9 +56,23 @@ inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 " Use enter to accept snippet expansion
 inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<CR>"
 
+" Use <c-space> to trigger completion.
+
+inoremap <silent><expr> <c-space> coc#refresh()
+
+" Make <CR> auto-select the first completion item and notify coc.nvim to
+" format on enter, <cr> could be remapped by other vim plugin
+inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
 " multi cursor shortcuts
 nmap <silent> <C-a> <Plug>(coc-cursors-word)
 xmap <silent> <C-a> <Plug>(coc-cursors-range)
+
+" Use CTRL-S for selections ranges.
+" Requires 'textDocument/selectionRange' support of language server.
+nmap <silent> <C-s> <Plug>(coc-range-select)
+xmap <silent> <C-s> <Plug>(coc-range-select)
 
 
 " Use `[g` and `]g` to navigate diagnostics

@@ -4,8 +4,9 @@
 au BufEnter * set fo-=c fo-=r fo-=o                     " stop annoying auto commenting on new lines
 au FileType help wincmd L                               " open help in vertical split
 au BufWritePre * :%s/\s\+$//e                           " remove trailing whitespaces before saving
-au CursorHold * silent call CocActionAsync('highlight') " highlight match on cursor hold
 
+" Highlight the symbol and its references when holding the cursor.
+autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " Automatically install missing plugins on startup
 autocmd VimEnter *
@@ -37,6 +38,15 @@ augroup folderarg
     autocmd VimEnter * if argc() != 0 && isdirectory(argv()[0]) | execute 'Files ' fnameescape(argv()[0]) | endif
 augroup END
 
+augroup mygroup
+  autocmd!
+  " Setup formatexpr specified filetype(s).
+  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+  " Update signature help on jump placeholder.
+  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+augroup end
+
+
 " Return to last edit position when opening files
 autocmd BufReadPost *
      \ if line("'\"") > 0 && line("'\"") <= line("$") |
@@ -46,6 +56,10 @@ autocmd BufReadPost *
 
 " format with available file format formatter
 command! -nargs=0 Format :call CocAction('format')
+
+" Add `:Fold` command to fold current buffer.
+command! -nargs=? Fold :call     CocAction('fold', <f-args>)
+
 
 " organize imports
 command! -nargs=0 OR :call CocAction('runCommand', 'editor.action.organizeImport')

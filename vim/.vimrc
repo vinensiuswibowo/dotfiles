@@ -1,4 +1,3 @@
-" ==================== general config ======================== "{{{
 syntax on
 set termguicolors                                       " Opaque Background
 set mouse=a                                             " enable mouse scrolling
@@ -30,7 +29,6 @@ set backspace=indent,eol,start                          " sensible backspacing
 set undofile                                            " enable persistent undo
 set undodir=/tmp                                        " undo temp file directory
 set foldlevel=0                                         " open all folds by default
-set inccommand=nosplit                                  " visual feedback while substituting
 set showtabline=2                                       " always show tabline
 set grepprg=rg\ --vimgrep                               " use rg as default grepper
 
@@ -38,22 +36,31 @@ set grepprg=rg\ --vimgrep                               " use rg as default grep
 set nocursorline
 set nocursorcolumn
 set scrolljump=5
-" set lazyredraw
-" set redrawtime=10000
-" set synmaxcol=180
-" set re=1
-
-" required by coc
-set hidden
-set nobackup
-set nowritebackup
-set cmdheight=1
-set updatetime=300
-set shortmess+=c
-set signcolumn=yes
-
-set timeoutlen=500
-
-
 "
 
+" I hate escape more than anything else
+inoremap jk <Esc>
+inoremap kj <Esc>
+
+"interface with the system's clipboard
+noremap <Leader>y "*y
+noremap <Leader>p "*p
+noremap <Leader>Y "+y
+noremap <Leader>P "+p
+
+nmap <Tab> :bnext<CR>
+nmap <S-Tab> :bprevious<CR>
+" new line in normal mode and back
+map <Enter> o<ESC>
+map <S-Enter> O<ESC>
+
+
+" Alternate way to quit
+nnoremap <silent> <C-q> :wq!<CR>
+" Better indenting
+vnoremap < <gv
+vnoremap > >gv
+
+au BufEnter * set fo-=c fo-=r fo-=o                     " stop annoying auto commenting on new lines
+au FileType help wincmd L                               " open help in vertical split
+au BufWritePre * :%s/\s\+$//e                           " remove trailing whitespaces before saving

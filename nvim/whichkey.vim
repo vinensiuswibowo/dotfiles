@@ -33,7 +33,6 @@ let g:which_key_map['='] = [ '<C-W>='                                          ,
 let g:which_key_map['f'] = [ ':Format'                                         , 'Format Buffer' ]
 let g:which_key_map['b'] = [ ':Buffers'                                        , 'List Buffers' ]
 let g:which_key_map['n'] = [ ':CocCommand explorer --sources=buffer+,file+'    , 'Toggle Explorer' ]
-let g:which_key_map['"'] = [ ':call OpenTerminal()'                            , 'Open Terminal' ]
 
 
 
@@ -47,7 +46,8 @@ let g:which_key_map.s = {
 
 let g:which_key_map.t = {
       \ 'name' : '+Terminal' ,
-    \ 'g' : [':FloatermNew --height=0.8 --width=0.8 gitui'                              , 'Gitui'],
+      \ 'g' : [':FloatermNew --height=0.8 --width=0.8 --wintype=float --name=floatGit gitui'                              , 'Gitui'],
+      \ 'n' : [':call OpenTerminal()'                              , 'New terminal'],
       \ }
 
 let g:which_key_map.m = {

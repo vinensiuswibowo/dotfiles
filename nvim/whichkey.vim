@@ -32,7 +32,6 @@ let g:which_key_map['?'] = [ ':Commands'                                       ,
 let g:which_key_map['='] = [ '<C-W>='                                          , 'balance windows' ]
 let g:which_key_map['f'] = [ ':Format'                                         , 'Format Buffer' ]
 let g:which_key_map['b'] = [ ':Buffers'                                        , 'List Buffers' ]
-let g:which_key_map['t'] = [ ':BTags'                                          , 'Tags' ]
 let g:which_key_map['n'] = [ ':CocCommand explorer --sources=buffer+,file+'    , 'Toggle Explorer' ]
 let g:which_key_map['"'] = [ ':call OpenTerminal()'                            , 'Open Terminal' ]
 
@@ -44,6 +43,11 @@ let g:which_key_map.s = {
       \ 'w' : [':Rg'                        , 'Search Words'],
       \ 'f' : ['Files' , 'Search files'],
       \ 'a' : [':Ag' , 'Search text ag'],
+      \ }
+
+let g:which_key_map.t = {
+      \ 'name' : '+Terminal' ,
+    \ 'g' : [':FloatermNew --height=0.8 --width=0.8 gitui'                              , 'Gitui'],
       \ }
 
 let g:which_key_map.m = {
@@ -89,6 +93,7 @@ let g:which_key_map.g = {
       \ 't' : [':GitGutterSignsToggle'             , 'toggle signs'],
       \ 'v' : [':GV'                               , 'view commits'],
       \ 'V' : [':GV!'                              , 'view buffer commits'],
+    \ 'x' : [':FloatermNew --height=0.8 --width=0.8 gitui'                              , 'Gitui'],
       \ }
 
 

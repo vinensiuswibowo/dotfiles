@@ -23,6 +23,7 @@ Plug 'junegunn/fzf.vim'                                 " fuzzy search integrati
 Plug 'Yggdroot/indentLine'                              " show indentation lines
 Plug 'preservim/nerdcommenter'
 Plug 'mhinz/vim-startify'                               " cool start up screen
+Plug 'voldikss/vim-floaterm'
 
 " Git
 Plug 'airblade/vim-gitgutter'

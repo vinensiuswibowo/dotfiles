@@ -43,6 +43,7 @@ let g:which_key_map.s = {
       \ 'name' : '+Search' ,
       \ 'w' : [':Rg'                        , 'Search Words'],
       \ 'f' : ['Files' , 'Search files'],
+      \ 'a' : [':Ag' , 'Search text ag'],
       \ }
 
 let g:which_key_map.m = {
@@ -50,6 +51,20 @@ let g:which_key_map.m = {
       \ 'n' : ['<plug>(fzf-maps-n)'                        , 'Normal Mode'],
       \ 'i' : ['<plug>(fzf-maps-i)'                        , 'Insert Mode'],
       \ 'v' : ['<plug>(fzf-maps-x)'                        , 'Visual Mode'],
+      \ }
+
+" b is for buffer
+let g:which_key_map.b = {
+      \ 'name' : '+buffer' ,
+      \ '>' : [':BufferMoveNext'        , 'move next'],
+      \ '<' : [':BufferMovePrevious'    , 'move prev'],
+      \ 'b' : [':BufferPick'            , 'pick buffer'],
+      \ 'd' : [':Bdelete'               , 'delete-buffer'],
+      \ 'D' : [':BufferOrderByDirectory', 'order by directory'],
+      \ 'f' : ['bfirst'                 , 'first-buffer'],
+      \ 'l' : ['blast'                  , 'last buffer'],
+      \ 'n' : ['bnext'                  , 'next-buffer'],
+      \ 'p' : ['bprevious'              , 'previous-buffer'],
       \ }
 
 " g is for git

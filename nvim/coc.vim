@@ -33,4 +33,16 @@ let g:coc_global_extensions = [
   \'coc-tsserver',
   \'coc-prettier',
   \'coc-marketplace',
+  \'coc-explorer',
+  \'coc-snippets',
+  \'coc-css',
+  \'coc-cssmodules',
+  \'coc-floaterm',
+  \'coc-fzf-preview',
+  \'coc-lists',
+  \'coc-pairs',
+  \'coc-stylelintplus',
+  \'coc-tasks',
+  \'coc-vimlsp',
+  \'coc-yank'
   \]

@@ -36,6 +36,5 @@
   "explorer.keyMappings.global": {
     "<cr>": ["expandable?", "expand", "open"],
     "v": "open:vsplit"
-  },
-  "coc.source.emoji.filetypes": ["markdown"]
+  }
 }

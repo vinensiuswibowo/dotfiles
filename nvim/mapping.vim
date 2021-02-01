@@ -31,11 +31,13 @@ nnoremap <silent> <C-q> :wq!<CR>
 " nnoremap d "_d
 " vnoremap d "_d
 " vnoremap p "_dP
+
 " inoremap <C-l> <C-\><C-N><C-w>l
-" nnoremap <C-h> <C-w>h
-" noremap <C-j> <C-w>j
-" nnoremap <C-k> <C-w>k
-" nnoremap <C-l> <C-w>l
+
+nnoremap <C-h> <C-w>h
+noremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
 
 " disable hl with 2 esc
 noremap <silent><esc> <esc>:noh<CR><esc>

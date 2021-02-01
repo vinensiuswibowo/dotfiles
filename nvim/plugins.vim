@@ -1,5 +1,5 @@
 
-
+set nocompatible
 call plug#begin(expand('~/.config/nvim/plugged'))
 
 "}}}
@@ -9,6 +9,7 @@ call plug#begin(expand('~/.config/nvim/plugged'))
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'ryanoasis/vim-devicons'                           " pretty icons everywhere
 Plug 'christianchiarulli/nvcode-color-schemes.vim'
+" Plug 'arcticicestudio/nord-vim'
 Plug 'gregsexton/MatchTag'                              " highlight matching html tags
 Plug 'Jorengarenar/vim-MvVis'                           " move visual selection
 Plug 'glepnir/galaxyline.nvim'
@@ -25,6 +26,9 @@ Plug 'preservim/nerdcommenter'
 Plug 'mhinz/vim-startify'                               " cool start up screen
 Plug 'voldikss/vim-floaterm'
 
+" Terminal
+Plug 'voldikss/vim-floaterm'
+
 " Git
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'                               " git support
@@ -32,7 +36,8 @@ Plug 'tpope/vim-fugitive'                               " git support
 " Better tabline
 Plug 'romgrk/barbar.nvim'
 
-
+" Better Syntax Support
+Plug 'sheerun/vim-polyglot'
 
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
 Plug 'liuchengxu/vim-which-key'

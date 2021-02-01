@@ -36,6 +36,16 @@ let g:which_key_map['n'] = [ ':CocCommand explorer --sources=buffer+,file+'    ,
 
 
 
+" t is for terminal
+let g:which_key_map.t = {
+      \ 'name' : '+terminal' ,
+      \ ';' : [':FloatermNew --wintype=normal --height=6'        , 'terminal'],
+      \ 'g' : [':FloatermNew lazygit'                           , 'git'],
+      \ 'd' : [':FloatermNew lazydocker'                        , 'docker'],
+      \ 'n' : [':FloatermNew'                              , 'New'],
+      \ 't' : [':FloatermToggle'                                , 'toggle'],
+      \ }
+
 "s is for search
 let g:which_key_map.s = {
       \ 'name' : '+Search' ,

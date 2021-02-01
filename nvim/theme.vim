@@ -5,7 +5,8 @@ hi Comment cterm=italic
 let g:nvcode_termcolors=256
 syntax on
 colorscheme nvcode
-
+" colorscheme nord
+" let g:nord_bold_vertical_split_line = 0
 
 
 hi Normal guibg=NONE

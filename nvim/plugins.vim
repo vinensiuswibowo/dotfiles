@@ -42,6 +42,8 @@ Plug 'sheerun/vim-polyglot'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
 Plug 'liuchengxu/vim-which-key'
 
+" Intuitive buffer closing
+Plug 'moll/vim-bbye'
 
 call plug#end()
 

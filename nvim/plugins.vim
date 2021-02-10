@@ -10,6 +10,7 @@ Plug 'kyazdani42/nvim-web-devicons'
 Plug 'ryanoasis/vim-devicons'                           " pretty icons everywhere
 Plug 'christianchiarulli/nvcode-color-schemes.vim'
 " Plug 'arcticicestudio/nord-vim'
+" Plug 'tomasr/molokai'			" sublime theme
 Plug 'gregsexton/MatchTag'                              " highlight matching html tags
 Plug 'Jorengarenar/vim-MvVis'                           " move visual selection
 Plug 'glepnir/galaxyline.nvim'
@@ -41,9 +42,11 @@ Plug 'sheerun/vim-polyglot'
 
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
 Plug 'liuchengxu/vim-which-key'
-
 " Intuitive buffer closing
 Plug 'moll/vim-bbye'
+
+Plug 'editorconfig/editorconfig-vim'
+Plug 'herringtondarkholme/yats.vim' 	" Typescript syntax
 
 call plug#end()
 

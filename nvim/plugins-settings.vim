@@ -6,7 +6,9 @@
 " Add spaces after comment delimiters by default
 let g:NERDSpaceDelims = 1
 let g:NERDDefaultAlign = 'left'
-
+let g:NERDCustomDelimiters={
+	\ 'typescript': { 'left': '//', 'right': '', 'leftAlt': '{/*', 'rightAlt': '*/}' },
+\}
 let g:python3_host_prog = '/usr/local/bin/python3'
 
 "" built in plugins

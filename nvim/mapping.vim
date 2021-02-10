@@ -1,6 +1,11 @@
 
-let mapleader=" "
+
 "" the essentials
+
+" Set leader to space bar
+let mapleader = " "
+let maplocalleader = " "
+
 
 " I hate escape more than anything else
 inoremap jk <Esc>
@@ -32,11 +37,18 @@ nnoremap <silent> <C-q> :wq!<CR>
 " vnoremap d "_d
 " vnoremap p "_dP
 
-" inoremap <C-l> <C-\><C-N><C-w>l
+" Window Navigation
 
+" Navigate to left window.
 nnoremap <C-h> <C-w>h
-noremap <C-j> <C-w>j
+
+" Navigate to down window.
+nnoremap <C-j> <C-w>j
+
+" Navigate to top window.
 nnoremap <C-k> <C-w>k
+
+" Navigate to right window.
 nnoremap <C-l> <C-w>l
 
 " disable hl with 2 esc
@@ -96,9 +108,22 @@ vmap J <Plug>(MvVisDown)
 vmap K <Plug>(MvVisUp)
 vmap L <Plug>(MvVisRight)
 
-" Better indenting
+" Indent controls
+" Reselect text ater indent/unindent.
 vnoremap < <gv
 vnoremap > >gv
+" Tab to indent in visual mode.
+vnoremap <Tab> >gv
+" Shift+Tab to unindent in visual mode.
+vnoremap <S-Tab> <gv
+
+" Text alignment
+nnoremap <Leader>Al :left<CR>
+nnoremap <Leader>Ac :center<CR>
+nnoremap <Leader>Ar :right<CR>
+vnoremap <Leader>Al :left<CR>
+vnoremap <Leader>Ac :center<CR>
+vnoremap <Leader>Ar :right<CR>
 
 " exc terminal
 tnoremap <Esc> <C-\><C-n>

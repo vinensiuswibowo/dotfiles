@@ -6,6 +6,7 @@
   },
   "snippets.priority": 1,
   "suggest.languageSourcePriority": 99,
+  "coc.preferences.colorSupport": true,
   "coc.source.file.priority": 2,
   "coc.source.around.priority": 3,
   "coc.source.buffer.priority": 4,
@@ -17,6 +18,8 @@
     "markdown",
     "javascript",
     "typescript",
+    "typescriptreact",
+    "javascriptreact",
     "html",
     "yaml",
     "json"

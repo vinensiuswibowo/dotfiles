@@ -30,6 +30,7 @@ let g:coc_global_extensions = [
   \'coc-tsserver',
   \'coc-prettier',
   \'coc-marketplace',
+  \'coc-svg',
   \'coc-explorer',
   \'coc-snippets',
   \'coc-css',

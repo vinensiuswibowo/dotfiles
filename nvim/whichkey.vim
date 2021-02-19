@@ -27,11 +27,9 @@ nnoremap <silent> <leader>      :<c-u>WhichKey '<Space>'<CR>
 
 
 " Single mappings
-let g:which_key_map['/'] = [ ':call Comment()'                                 , 'comment' ]
 let g:which_key_map['?'] = [ ':Commands'                                       , 'commands' ]
 let g:which_key_map['='] = [ '<C-W>='                                          , 'balance windows' ]
 let g:which_key_map['f'] = [ ':Format'                                         , 'Format Buffer' ]
-let g:which_key_map['b'] = [ ':Buffers'                                        , 'List Buffers' ]
 let g:which_key_map['n'] = [ ':CocCommand explorer --sources=buffer+,file+'    , 'Toggle Explorer' ]
 
 
@@ -40,8 +38,6 @@ let g:which_key_map['n'] = [ ':CocCommand explorer --sources=buffer+,file+'    ,
 let g:which_key_map.t = {
       \ 'name' : '+terminal' ,
       \ ';' : [':FloatermNew --wintype=normal --height=6'        , 'terminal'],
-      \ 'g' : [':FloatermNew lazygit'                           , 'git'],
-      \ 'd' : [':FloatermNew lazydocker'                        , 'docker'],
       \ 'n' : [':FloatermNew'                              , 'New'],
       \ 't' : [':FloatermToggle'                                , 'toggle'],
       \ }
@@ -70,6 +66,7 @@ let g:which_key_map.m = {
 " b is for buffer
 let g:which_key_map.b = {
       \ 'name' : '+buffer' ,
+      \ 'b' : [':Buffers'        , 'List Buffers'],
       \ '>' : [':BufferMoveNext'        , 'move next'],
       \ '<' : [':BufferMovePrevious'    , 'move prev'],
       \ 'b' : [':BufferPick'            , 'pick buffer'],

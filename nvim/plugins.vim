@@ -40,13 +40,14 @@ Plug 'romgrk/barbar.nvim'
 " Better Syntax Support
 Plug 'sheerun/vim-polyglot'
 
+Plug 'Asheq/close-buffers.vim'
+
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
 Plug 'liuchengxu/vim-which-key'
 " Intuitive buffer closing
 Plug 'moll/vim-bbye'
 
 Plug 'editorconfig/editorconfig-vim'
-Plug 'herringtondarkholme/yats.vim' 	" Typescript syntax
 
 call plug#end()
 

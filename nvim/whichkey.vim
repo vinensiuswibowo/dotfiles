@@ -73,7 +73,7 @@ let g:which_key_map.b = {
       \ '>' : [':BufferMoveNext'        , 'move next'],
       \ '<' : [':BufferMovePrevious'    , 'move prev'],
       \ 'b' : [':BufferPick'            , 'pick buffer'],
-      \ 'd' : [':Bdelete'               , 'delete-buffer'],
+      \ 'd' : [':Bdelete this'               , 'delete-buffer'],
       \ 'D' : [':BufferOrderByDirectory', 'order by directory'],
       \ 'f' : ['bfirst'                 , 'first-buffer'],
       \ 'l' : ['blast'                  , 'last buffer'],

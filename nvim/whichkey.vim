@@ -66,11 +66,11 @@ let g:which_key_map.m = {
 " b is for buffer
 let g:which_key_map.b = {
       \ 'name' : '+buffer' ,
-      \ 'b' : [':Buffers'        , 'List Buffers'],
+      \ 'L' : [':Buffers'        , 'List Buffers'],
       \ '>' : [':BufferMoveNext'        , 'move next'],
       \ '<' : [':BufferMovePrevious'    , 'move prev'],
       \ 'b' : [':BufferPick'            , 'pick buffer'],
-      \ 'd' : [':Bdelete this'               , 'delete-buffer'],
+      \ 'd' : [':Bdelete'               , 'delete-buffer'],
       \ 'D' : [':BufferOrderByDirectory', 'order by directory'],
       \ 'f' : ['bfirst'                 , 'first-buffer'],
       \ 'l' : ['blast'                  , 'last buffer'],

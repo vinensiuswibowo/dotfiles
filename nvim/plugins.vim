@@ -40,6 +40,8 @@ Plug 'liuchengxu/vim-which-key'
 " Intuitive buffer closing
 Plug 'moll/vim-bbye'
 
+Plug 'psliwka/vim-smoothie'
+
 Plug 'editorconfig/editorconfig-vim'
 
 call plug#end()

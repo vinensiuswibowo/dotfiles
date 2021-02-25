@@ -34,7 +34,16 @@
   "explorer.icon.enableNerdfont": true,
   "explorer.previewAction.onHover": false,
   "explorer.icon.enableVimDevicons": false,
-  "explorer.file.showHiddenFiles": true,
+  // "explorer.file.showHiddenFiles": true,
+  "explorer.file.hiddenRules": {
+    "extensions": [
+      ".DS_Store"
+    ],
+    "filenames": [],
+    "patternMatches": [
+      "^\\."
+    ]
+  },
   "explorer.keyMappings.global": {
     "<cr>": ["expandable?", "expand", "open"],
     "v": "open:vsplit"

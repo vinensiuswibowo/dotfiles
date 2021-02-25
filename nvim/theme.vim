@@ -1,9 +1,7 @@
 
 
 " theme
-" hi Comment cterm=italic
 let g:nvcode_termcolors=256
-syntax on
 " colo molokai
 colorscheme nvcode
 " colorscheme nord

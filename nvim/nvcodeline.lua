@@ -6,6 +6,7 @@ gl.short_line_list = {'LuaTree','vista','dbui'}
 
 local colors = {
         bg = '#000000',
+        -- bg = '#282c34',
         yellow = '#fabd2f',
         cyan = '#008080',
         darkblue = '#081633',

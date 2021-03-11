@@ -1,18 +1,20 @@
 
 
 " theme
-let g:nvcode_termcolors=256
-" colo molokai
-colorscheme nvcode
-" colorscheme nord
-" let g:nord_bold_vertical_split_line = 0
+" let g:nvcode_termcolors=256
+" colorscheme nvcode
+colorscheme gruvbox
 
+if (has("termguicolors"))
+    hi LineNr ctermbg=NONE guibg=NONE
+endif
 
 hi Normal guibg=NONE
-hi Pmenu guibg='#00010a' guifg=white                    " popup menu colors
+" hi Normal guibg=#282c34
+" hi Pmenu guibg='#00010a' guifg=white                    " popup menu colors
 hi Comment gui=italic cterm=italic                      " italic comments
 hi Search guibg=#b16286 guifg=#ebdbb2 gui=NONE          " search string highlight color
-hi NonText guifg=bg                                     " mask ~ on empty lines
+" hi NonText guifg=bg                                     " mask ~ on empty lines
 hi clear CursorLineNr                                   " use the theme color for relative number
 hi CursorLineNr gui=bold                                " make relative number bold
 hi SpellBad guifg=NONE gui=bold,undercurl               " misspelled words

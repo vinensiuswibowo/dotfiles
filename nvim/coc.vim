@@ -42,5 +42,7 @@ let g:coc_global_extensions = [
   \'coc-stylelintplus',
   \'coc-tasks',
   \'coc-vimlsp',
+  \'coc-import-cost',
+  \'coc-restclient',
   \'coc-yank'
   \]

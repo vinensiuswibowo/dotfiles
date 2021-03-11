@@ -41,7 +41,9 @@
     ],
     "filenames": [],
     "patternMatches": [
-      "^\\."
+      // "^\\."
+      "node_modules",
+      ".git"
     ]
   },
   "explorer.keyMappings.global": {

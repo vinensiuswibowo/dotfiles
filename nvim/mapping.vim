@@ -32,14 +32,6 @@ map <S-Enter> O<ESC>
 " Alternate way to quit
 nnoremap <silent> <C-q> :wq!<CR>
 
-" use a different register for delete and paste
-" nnoremap d "_d
-" vnoremap d "_d
-" vnoremap p "_dP
-
-" Window Navigation
-
-" Navigate to left window.
 nnoremap <C-h> <C-w>h
 
 " Navigate to down window.
@@ -56,9 +48,6 @@ noremap <silent><esc> <esc>:noh<CR><esc>
 
 " trim white spaces
 nnoremap <F2> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
-
-
-"" coc
 
 " use tab to navigate snippet placeholders
 inoremap <silent><expr> <TAB>
@@ -78,15 +67,6 @@ inoremap <silent><expr> <c-space> coc#refresh()
 " format on enter, <cr> could be remapped by other vim plugin
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
                               \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-
-" multi cursor shortcuts
-" nmap <silent> <C-a> <Plug>(coc-cursors-word)
-" xmap <silent> <C-a> <Plug>(coc-cursors-range)
-
-" Use CTRL-S for selections ranges.
-" Requires 'textDocument/selectionRange' support of language server.
-" nmap <silent> <C-s> <Plug>(coc-range-select)
-" xmap <silent> <C-s> <Plug>(coc-range-select)
 
 nmap <expr> <silent> <C-d> <SID>select_current_word()
 function! s:select_current_word()
@@ -114,16 +94,8 @@ vnoremap < <gv
 vnoremap > >gv
 " Tab to indent in visual mode.
 vnoremap <Tab> >gv
-" Shift+Tab to unindent in visual mode.
 vnoremap <S-Tab> <gv
 
-" Text alignment
-nnoremap <Leader>Al :left<CR>
-nnoremap <Leader>Ac :center<CR>
-nnoremap <Leader>Ar :right<CR>
-vnoremap <Leader>Al :left<CR>
-vnoremap <Leader>Ac :center<CR>
-vnoremap <Leader>Ar :right<CR>
 
 " exc terminal
 tnoremap <Esc> <C-\><C-n>

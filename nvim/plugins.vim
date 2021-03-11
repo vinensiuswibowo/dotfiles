@@ -8,7 +8,8 @@ call plug#begin(expand('~/.config/nvim/plugged'))
 
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'ryanoasis/vim-devicons'                           " pretty icons everywhere
-Plug 'christianchiarulli/nvcode-color-schemes.vim'
+" Plug 'christianchiarulli/nvcode-color-schemes.vim'
+Plug 'morhetz/gruvbox'
 Plug 'gregsexton/MatchTag'                              " highlight matching html tags
 Plug 'Jorengarenar/vim-MvVis'                           " move visual selection
 Plug 'glepnir/galaxyline.nvim'
@@ -37,10 +38,8 @@ Plug 'sheerun/vim-polyglot'
 
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
 Plug 'liuchengxu/vim-which-key'
-" Intuitive buffer closing
 Plug 'moll/vim-bbye'
 
-Plug 'psliwka/vim-smoothie'
 
 Plug 'editorconfig/editorconfig-vim'
 

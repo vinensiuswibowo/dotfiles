@@ -28,7 +28,6 @@ let g:coc_global_extensions = [
   \'coc-json',
   \'coc-html',
   \'coc-tsserver',
-  \'coc-prettier',
   \'coc-marketplace',
   \'coc-svg',
   \'coc-explorer',
@@ -44,5 +43,16 @@ let g:coc_global_extensions = [
   \'coc-vimlsp',
   \'coc-import-cost',
   \'coc-restclient',
+  \'coc-floaterm',
   \'coc-yank'
   \]
+
+" Add CoC Prettier if prettier is installed
+if isdirectory('./node_modules') && isdirectory('./node_modules/prettier')
+  let g:coc_global_extensions += ['coc-prettier']
+endif
+
+" Add CoC ESLint if ESLint is installed
+if isdirectory('./node_modules') && isdirectory('./node_modules/eslint')
+  let g:coc_global_extensions += ['coc-eslint']
+endif

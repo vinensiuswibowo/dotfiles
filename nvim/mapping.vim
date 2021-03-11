@@ -15,11 +15,6 @@ inoremap kj <Esc>
 vmap ++ <plug>NERDCommenterToggle
 nmap ++ <plug>NERDCommenterToggle
 
-"interface with the system's clipboard
-noremap <Leader>y "*y
-noremap <Leader>p "*p
-noremap <Leader>Y "+y
-noremap <Leader>P "+p
 
 nmap <Tab> :bnext<CR>
 nmap <S-Tab> :bprevious<CR>
@@ -99,5 +94,13 @@ vnoremap <S-Tab> <gv
 
 " exc terminal
 tnoremap <Esc> <C-\><C-n>
+
+" Folding
+" Enable folding
+set foldmethod=syntax
+set foldlevel=99
+
+" Enable folding with the z key
+nmap Z za
 
 call which_key#register('<Space>', "g:which_key_map")

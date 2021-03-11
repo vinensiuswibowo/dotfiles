@@ -24,6 +24,9 @@
     "yaml",
     "json"
   ],
+  "floaterm.completion.enable": true,
+  "floaterm.completion.shortcut": "floaterm",
+  "floaterm.completion.priority": 5,
   "coc.preferences.hoverTarget": "float",
   "snippets.ultisnips.directories": ["UltiSnips", "~/.config/nvim/snips"],
   "css.validate": false,

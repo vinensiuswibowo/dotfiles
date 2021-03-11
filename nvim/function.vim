@@ -26,15 +26,3 @@ function! s:show_documentation()
                 call CocAction('doHover')
         endif
 endfunction
-
-" start terminal in insert mode
-au BufEnter * if &buftype == 'terminal' | :startinsert | endif
-
-" open terminal on ctrl+;
-" uses zsh instead of bash
-function! OpenTerminal()
-        split term://zsh
-        resize 10
-endfunction
-
-"}}}

@@ -10,7 +10,6 @@ if empty(glob('~/.config/nvim/autoload/plug.vim'))
 endif
 
 source $HOME/.config/nvim/plugins.vim
-" luafile $HOME/.config/nvim/nvcodeline.lua
 source $HOME/.config/nvim/barbar.vim
 source $HOME/.config/nvim/config.vim
 source $HOME/.config/nvim/whichkey.vim

@@ -1,16 +1,6 @@
-
-
-" ======================== Whichkey conf ======================== "{{{
-
 let g:which_key_display_names = {'<CR>': '↵', '<TAB>': '⇆'}
-
-
-" Create map to add keys to
 let g:which_key_map =  {}
-" Define a separator
 let g:which_key_sep = '→'
-let g:which_key_map['?'] = 'search word'
-
 
 " Not a fan of floating windows for this
 let g:which_key_use_floating_win = 0
@@ -26,13 +16,13 @@ let g:mapleader = "\<Space>"
 nnoremap <silent> <leader>      :<c-u>WhichKey '<Space>'<CR>
 vnoremap <silent> <leader> :<c-u>WhichKeyVisual '<Space>'<CR>
 
-
 " Single mappings
-let g:which_key_map['?'] = [ ':Commands'                                       , 'commands' ]
-let g:which_key_map['a'] = [ '<Plug>(EasyAlign)'                                       , 'Align' ]
-let g:which_key_map['F'] = [ ':Format'                                         , 'Format Buffer' ]
-let g:which_key_map['f'] = [ 'za'                                         , 'Folding' ]
-let g:which_key_map['n'] = [ ':CocCommand explorer --sources=buffer+,file+'    , 'Toggle Explorer' ]
+let g:which_key_map['?'] = [ ':Commands',                                    'commands' ]
+let g:which_key_map['a'] = [ '<Plug>(EasyAlign)',                            'Align' ]
+let g:which_key_map['F'] = [ ':Format',                                      'Format Buffer' ]
+let g:which_key_map['f'] = [ 'za',                                           'Folding' ]
+let g:which_key_map['n'] = [ ':CocCommand explorer --sources=buffer+,file+', 'Toggle Explorer' ]
+let g:which_key_map['t'] = [ ':FloatermToggle',                              'Toggle Terminal' ]
 
 
 "s is for search
@@ -46,10 +36,8 @@ let g:which_key_map.s = {
 " b is for buffer
 let g:which_key_map.b = {
       \ 'name' : '+buffer',
-      \ 'L' : [':Buffers',  'List Buffers'],
+      \ 'l' : [':Buffers',  'List Buffers'],
       \ 'd' : [':Bdelete',  'delete-buffer'],
-      \ 'f' : ['bfirst',    'first-buffer'],
-      \ 'l' : ['blast',     'last buffer'],
       \ 'n' : ['bnext',     'next-buffer'],
       \ 'p' : ['bprevious', 'previous-buffer'],
       \ }
@@ -77,15 +65,8 @@ let g:which_key_map.g = {
       \ ']' : [':diffget //3',                      'Pick Current'],
       \ }
 
-
-let g:which_key_map.t = {
-      \ 'name' : '+terminal' ,
-      \ 'n' : [':FloatermNew --wintype=float --height=0.6 --width=0.8', 'terminal'],
-      \ 't' : [':FloatermToggle',                                       'toggle'],
-      \ }
-
-" j is for language server protocol
-let g:which_key_map.j = {
+" c is for language server protocol
+let g:which_key_map.c = {
       \ 'name' : '+Coc',
       \ '.' : [':CocConfig',                            'config'],
       \ 'b' : [':CocNext',                              'next action'],
@@ -109,6 +90,10 @@ let g:which_key_map.j = {
       \ 't' : ['<Plug>(coc-type-definition)',           'type definition'],
       \ }
 
+let g:which_key_map.h = {
+      \ 'name': '+help',
+      \ 'h': [':help', 'help']
+  \ }
 
 
 

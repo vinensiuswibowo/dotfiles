@@ -24,7 +24,11 @@
     "yaml",
     "json"
   ],
-  "floaterm.completion.enable": true,
+  "git.removedSign.text":"▌",
+  "git.changedSign.text":"▌",
+  "git.addedSign.text": "▌",
+  "git.changeRemovedSign.text": "▌",
+  "git.topRemovedSign.text":"▌",
   "floaterm.completion.shortcut": "floaterm",
   "floaterm.completion.priority": 5,
   "coc.preferences.hoverTarget": "float",

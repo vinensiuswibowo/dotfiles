@@ -1,8 +1,3 @@
-
-
-" theme
-" let g:nvcode_termcolors=256
-" colorscheme nvcode
 colorscheme gruvbox
 set background=dark
 
@@ -18,19 +13,17 @@ set background=dark
 " coc multi cursor highlight color
 
 hi clear CursorLineNr                                   " use the theme color for relative number
-" Set floaterm window's background to black
-hi Floaterm guibg=black
-" Set floating window border line color to cyan, and background to orange
-hi FloatermBorder guibg=orange guifg=cyan
+hi FloatermBorder guibg=#282828 guifg=#928374
+hi FloatermNC guibg=gray
 
 " hi Comment gui=italic cterm=italic                      " italic comments
 " hi Search guibg=#b16286 guifg=#ebdbb2 gui=NONE          " search string highlight color
 " hi CursorLineNr gui=bold                                " make relative number bold
 " hi SpellBad guifg=NONE gui=bold,undercurl               " misspelled words
 
-" hi DiffAdd  guibg=#0f111a guifg=#43a047
-" hi DiffChange guibg=#0f111a guifg=#fdd835
-" hi DiffRemoved guibg=#0f111a guifg=#e53935
+hi DiffAdd  guibg=#43a047 guifg=#3c3836
+hi DiffChange guibg=#fdd835 guifg=#3c3836
+hi DiffDelete guibg=#e53935 guifg=#3c3836
 
 " hi CocCursorRange guibg=#b16286 guifg=#ebdbb2
 

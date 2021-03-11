@@ -1,6 +1,3 @@
-
-
-" Explorer
 let g:coc_explorer_global_presets = {
 \   'floating': {
 \      'position': 'floating',
@@ -17,9 +14,6 @@ let g:coc_explorer_global_presets = {
 \   },
 \ }
 
-
-
-" Navigate snippet placeholders using tab
 let g:coc_snippet_next = '<Tab>'
 let g:coc_snippet_prev = '<S-Tab>'
 
@@ -29,7 +23,6 @@ let g:coc_global_extensions = [
   \'coc-html',
   \'coc-tsserver',
   \'coc-marketplace',
-  \'coc-svg',
   \'coc-explorer',
   \'coc-snippets',
   \'coc-css',
@@ -43,8 +36,8 @@ let g:coc_global_extensions = [
   \'coc-vimlsp',
   \'coc-import-cost',
   \'coc-restclient',
-  \'coc-floaterm',
-  \'coc-yank'
+  \'coc-yank',
+  \'coc-git'
   \]
 
 " Add CoC Prettier if prettier is installed

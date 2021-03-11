@@ -1,7 +1,3 @@
-
-
-
-"" startify
 let g:startify_padding_left = 10
 let g:startify_session_persistence = 1
 let g:startify_enable_special = 0
@@ -22,12 +18,12 @@ let  g:startify_bookmarks =  [
 
 " custom commands
 let g:startify_commands = [
-  \ {'ch':  ['Health Check', ':checkhealth']},
-  \ {'ps': ['Plugins status', ':PlugStatus']},
-  \ {'pu': ['Update vim plugins',':PlugUpdate | PlugUpgrade']},
+  \ {'ch': ['Health Check',       ':checkhealth']},
+  \ {'ps': ['Plugins status',     ':PlugStatus']},
+  \ {'pu': ['Update vim plugins', ':PlugUpdate | PlugUpgrade']},
   \ {'uc': ['Update coc Plugins', ':CocUpdate']},
-  \ {'h':  ['Help', ':help']},
-  \ {'cf':  ['init.vim', ':e ~/.config/nvim/init.vim']},
+  \ {'h':  ['Help',               ':help']},
+  \ {'cf': ['init.vim',           ':e ~/.config/nvim/init.vim']},
   \ ]
 
 " custom banner

@@ -10,10 +10,10 @@ plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
 # source $HOME/.zsh/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
-source $HOME/.zsh/completion.zsh
-source $HOME/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
-source $HOME/.zsh/history.zsh
-source $HOME/.zsh/aliases.zsh
+#source $HOME/.zsh/completion.zsh
+#source $HOME/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+#source $HOME/.zsh/history.zsh
+#source $HOME/.zsh/aliases.zsh
 
 # Initialize the completion system
 autoload -Uz compinit

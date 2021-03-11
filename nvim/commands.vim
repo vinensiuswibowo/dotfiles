@@ -68,8 +68,3 @@ command! -nargs=0 OR :call CocAction('runCommand', 'editor.action.organizeImport
 " files in fzf
 command! -bang -nargs=? -complete=dir Files
     \ call fzf#vim#files(<q-args>, fzf#vim#with_preview({'options': ['--layout=reverse', '--inline-info']}), <bang>0)
-
-" advanced grep
-" command! -nargs=* -bang Rg call RipgrepFzf(<q-args>, <bang>0)
-
-"}}}

@@ -66,7 +66,7 @@ let g:which_key_map.g = {
       \ 'D' : [':Git diff',                         'diff'],
       \ 'd' : [':Gvdiffsplit!',                     'diff merge tool'],
       \ 'q' : ['<C-w>o',                            'close merge tool'],
-      \ 'G' : [':Gstatus',                          'status'],
+      \ 's' : [':Gstatus',                          'status'],
       \ 'l' : [':Git log',                          'log'],
       \ 'p' : [':Git push',                         'push'],
       \ 'P' : [':Git pull',                         'pull'],

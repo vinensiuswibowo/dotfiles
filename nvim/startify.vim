@@ -22,8 +22,9 @@ let g:startify_commands = [
   \ {'ps': ['Plugins status',     ':PlugStatus']},
   \ {'pu': ['Update vim plugins', ':PlugUpdate | PlugUpgrade']},
   \ {'uc': ['Update coc Plugins', ':CocUpdate']},
+  \ {'n':  ['Explorer',           ':CocCommand explorer --sources=buffer+,file+']},
+  \ {'f':  ['Find file',          'Files']},
   \ {'h':  ['Help',               ':help']},
-  \ {'cf': ['init.vim',           ':e ~/.config/nvim/init.vim']},
   \ ]
 
 " custom banner

@@ -1,5 +1,9 @@
-colorscheme gruvbox
-set background=dark
+" colorscheme gruvbox
+" set background=dark
+colorscheme space-vim-dark
+hi Comment cterm=italic
+
+let g:gruvbox_contrast_dark='hard'
 
 " if (has("termguicolors"))
 "     hi LineNr ctermbg=NONE guibg=NONE
@@ -13,7 +17,8 @@ set background=dark
 " coc multi cursor highlight color
 
 hi clear CursorLineNr                                   " use the theme color for relative number
-hi FloatermBorder guibg=#282828 guifg=#928374
+" hi FloatermBorder guibg=#282828 guifg=#928374
+hi FloatermBorder guibg=#000000 guifg=#000000
 hi FloatermNC guibg=gray
 
 " hi Comment gui=italic cterm=italic                      " italic comments
@@ -26,4 +31,11 @@ hi DiffChange guibg=#fdd835 guifg=#3c3836
 hi DiffDelete guibg=#e53935 guifg=#3c3836
 
 " hi CocCursorRange guibg=#b16286 guifg=#ebdbb2
+
+
+colorscheme space-vim-dark
+hi Normal     ctermbg=NONE guibg=NONE
+hi LineNr     ctermbg=NONE guibg=NONE
+hi SignColumn ctermbg=NONE guibg=NONE
+hi Comment guifg=#5C6370 ctermfg=59
 

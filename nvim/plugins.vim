@@ -20,6 +20,8 @@ Plug 'liuchengxu/vim-which-key'
 Plug 'moll/vim-bbye'
 Plug 'voldikss/vim-floaterm'
 Plug 'stsewd/fzf-checkout.vim'
+Plug 'liuchengxu/space-vim-dark'
+
 
 call plug#end()
 

@@ -1,21 +1,9 @@
 {
-  "suggest.completionItemKindLabels": {
-    "text": "t",
-    "method": "m",
-    "function": ""
-  },
-  "snippets.priority": 1,
-  "suggest.languageSourcePriority": 99,
-  "coc.preferences.colorSupport": true,
-  "coc.source.file.priority": 2,
-  "coc.source.around.priority": 3,
-  "coc.source.buffer.priority": 4,
-  "codeLens.enable": true,
   "list.indicator": ">",
   "list.selectedSignText": " ",
   "coc.preferences.formatOnSaveFiletypes": [
     "css",
-    "markdown",
+    "less",
     "javascript",
     "typescript",
     "typescriptreact",
@@ -24,34 +12,21 @@
     "yaml",
     "json"
   ],
-  "git.removedSign.text":"▌",
-  "git.changedSign.text":"▌",
-  "git.addedSign.text": "▌",
-  "git.changeRemovedSign.text": "▌",
-  "git.topRemovedSign.text":"▌",
-  "floaterm.completion.shortcut": "floaterm",
-  "floaterm.completion.priority": 5,
-  "coc.preferences.hoverTarget": "float",
-  "snippets.ultisnips.directories": ["UltiSnips", "~/.config/nvim/snips"],
+  "git.removedSign.text": "▏",
+  "git.changedSign.text": "▏",
+  "git.addedSign.text": "▏",
+  "git.changeRemovedSign.text": "▏",
+  "git.topRemovedSign.text": "▏",
   "css.validate": false,
   "less.validate": false,
   "scss.validate": false,
   "explorer.width": 35,
   "explorer.file.root.template": "[icon] [git] [hidden & 1][root]",
   "explorer.icon.enableNerdfont": true,
-  "explorer.previewAction.onHover": false,
-  "explorer.icon.enableVimDevicons": false,
-  // "explorer.file.showHiddenFiles": true,
   "explorer.file.hiddenRules": {
-    "extensions": [
-      ".DS_Store"
-    ],
+    "extensions": [".DS_Store"],
     "filenames": [],
-    "patternMatches": [
-      // "^\\."
-      "node_modules",
-      ".git"
-    ]
+    "patternMatches": ["node_modules", ".git"]
   },
   "explorer.keyMappings.global": {
     "<cr>": ["expandable?", "expand", "open"],

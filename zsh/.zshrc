@@ -4,7 +4,9 @@ export GOPATH=$HOME/go
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 export PS1="VW~$ "
+export BAT_THEME="Dracula"
 alias v="nvim"
+# alias vim=/usr/local/bin/vim
 ZSH_THEME="arrow"
 plugins=(git)
 

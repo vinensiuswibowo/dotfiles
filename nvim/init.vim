@@ -6,12 +6,13 @@ if empty(glob('~/.config/nvim/autoload/plug.vim'))
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   autocmd VimEnter * PlugInstall | source $MYVIMRC
 endif
-
 set nocompatible
 call plug#begin(expand('~/.config/nvim/plugged'))
 
 Plug 'Jorengarenar/vim-MvVis'
-" Plug 'gruvbox-community/gruvbox'
+Plug 'gruvbox-community/gruvbox'
+Plug 'NLKNguyen/papercolor-theme'
+Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'junegunn/vim-easy-align'
 Plug 'preservim/nerdcommenter'
@@ -19,26 +20,23 @@ Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline'
 Plug 'mhinz/vim-startify'
 Plug 'sheerun/vim-polyglot'
-Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
+Plug 'liuchengxu/vim-which-key'
 Plug 'kyazdani42/nvim-web-devicons'
-Plug 'romgrk/barbar.nvim'
 Plug 'whatyouhide/vim-gotham'
 Plug 'unblevable/quick-scope'
-Plug 'nvim-lua/popup.nvim'
-Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-telescope/telescope.nvim'
+Plug 'junegunn/fzf.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 
 call plug#end()
 
 syntax enable             " Enables syntax highlighing
 set hidden                " Required to keep multiple buffers open multiple buffers
-set nohlsearch
 set noerrorbells
 set nowrap
 set whichwrap+=<,>,[,],h,l
 set cmdheight=1           " More space for displaying messages
 set mouse=a               " Enable your mouse
+set nohlsearch
 set splitbelow            " Horizontal splits will automatically be below
 set splitright            " Vertical splits will automatically be to the right
 set number                " Line numbers
@@ -77,8 +75,9 @@ set foldlevel=99
 
 " THEMES
 " colorscheme gruvbox
-colorscheme gotham
-" colorscheme material
+" colorscheme dracula
+" colorscheme gotham
+colorscheme PaperColor
 let $NVIM_TUI_ENABLE_TRUE_COLOR = 1
 " let g:material_theme_style= 'darker'
 " let g:airline_theme = 'material'
@@ -96,14 +95,28 @@ hi DiffDelete guibg=#000000 guifg=#e53935
 " hi DiffAdd  guibg=#43a047 guifg=#000000
 " hi DiffChange guibg=#fdd835 guifg=#000000
 " hi DiffDelete guibg=#e53935 guifg=#000000
+
 " END THEMES
 
 " SETTINGS
+" AIRLINE
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#show_close_button = 1
+let g:airline#extensions#tabline#close_symbol = 'X'
+let g:airline#extensions#tabline#show_tab_type = 0
+let g:airline#extensions#tabline#show_tab_nr = 0
+let g:airline#extensions#tabline#fnamecollapse = 1
+let g:airline#extensions#tabline#buffers_label = ''
+let g:airline#extensions#tabline#tabs_label = ''
+let g:airline#extensions#coc#enabled = 1
+let g:airline#extensions#tabline#fnamemod = ':t'
+let g:airline#extensions#tabline#formatter = 'unique_tail'
+
+
 let g:mapleader = "\<Space>"
 let g:which_key_map = {}
 let g:which_key_display_names = {'<CR>': '↵', '<TAB>': '⇆'}
 let g:which_key_sep = '→'
-" Not a fan of floating windows for this
 let g:which_key_use_floating_win = 0
 let g:which_key_max_size = 0
 let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
@@ -123,6 +136,7 @@ let g:omni_sql_no_default_maps = 1
 let g:loaded_python_provider = 0
 let g:loaded_perl_provider = 0
 let g:loaded_ruby_provider = 0
+
 let g:startify_lists = [
   \ { 'type': 'dir'       },
   \ { 'type': 'files'     },
@@ -130,18 +144,16 @@ let g:startify_lists = [
   \ { 'type': 'bookmarks' },
   \ { 'type': 'commands' },
   \ ]
-let g:startify_bookmarks =  [
-  \ {'v': '~/.config/nvim'},
-  \ {'d': '~/.dotfiles' }
-  \ ]
+
 let g:startify_commands = [
   \ {'ch': ['Health Check',       ':checkhealth']},
   \ {'ps': ['Plugins status',     ':PlugStatus']},
   \ {'pu': ['Update vim plugins', ':PlugUpdate | PlugUpgrade']},
   \ {'uc': ['Update coc Plugins', ':CocUpdate']},
-  \ {'f':  ['Find file',          'Telescope find_files']},
+  \ {'f':  ['Find file',          ':CocCommand fzf-preview.DirectoryFiles']},
   \ {'h':  ['Help',               ':help']},
   \ ]
+
 let g:startify_custom_header = []
 let g:coc_snippet_next = '<Tab>'
 let g:coc_snippet_prev = '<S-Tab>'
@@ -161,6 +173,7 @@ let g:coc_global_extensions = [
   \'coc-vimlsp',
   \'coc-restclient',
   \'coc-fzf-preview',
+  \'coc-git',
   \'coc-yank'
   \]
 
@@ -169,33 +182,67 @@ let g:coc_global_extensions = [
 
 let g:which_key_map['s'] = {
     \ 'name' : '+search',
-    \ 'f' : [':Telescope find_files',  'Files'],
-    \ 'w' : [':Telescope grep_string', 'Words'],
+    \ 'f' : [':CocCommand fzf-preview.DirectoryFiles', 'Files'],
+    \ 'w' : [':Rg',                                    'Words'],
     \ }
 
 let g:which_key_map.b = {
     \ 'name' : '+buffer',
-    \ 'l' : [':Telescope buffers',    'List'],
-    \ 'd' : [':BufferClose',                               'Close'],
+    \ 'l' : [':CocCommand fzf-preview.Buffers', 'List'],
+    \ 'd' : [':bdelete',                        'Close'],
+    \ }
+
+let g:which_key_map.l = {
+    \ 'name' : '+lsp' ,
+    \ ';' : ['<Plug>(coc-refactor)'                , 'refactor'],
+    \ 'a' : ['<Plug>(coc-codeaction)'              , 'code action'],
+    \ 'A' : ['<Plug>(coc-codeaction-selected)'     , 'selected action'],
+    \ 'b' : [':CocNext'                            , 'next action'],
+    \ 'B' : [':CocPrev'                            , 'prev action'],
+    \ 'c' : [':CocList commands'                   , 'commands'],
+    \ 'd' : ['<Plug>(coc-definition)'              , 'definition'],
+    \ 'D' : ['<Plug>(coc-declaration)'             , 'declaration'],
+    \ 'e' : [':CocList extensions'                 , 'extensions'],
+    \ 'f' : ['<Plug>(coc-format-selected)'         , 'format selected'],
+    \ 'F' : ['<Plug>(coc-format)'                  , 'format'],
+    \ 'h' : ['<Plug>(coc-float-hide)'              , 'hide'],
+    \ 'i' : ['<Plug>(coc-implementation)'          , 'implementation'],
+    \ 'I' : [':CocList diagnostics'                , 'diagnostics'],
+    \ 'j' : ['<Plug>(coc-float-jump)'              , 'float jump'],
+    \ 'l' : ['<Plug>(coc-codelens-action)'         , 'code lens'],
+    \ 'n' : ['<Plug>(coc-diagnostic-next)'         , 'next diagnostic'],
+    \ 'N' : ['<Plug>(coc-diagnostic-next-error)'   , 'next error'],
+    \ 'O' : [':CocList outline'                    , 'search outline'],
+    \ 'p' : ['<Plug>(coc-diagnostic-prev)'         , 'prev diagnostic'],
+    \ 'P' : ['<Plug>(coc-diagnostic-prev-error)'   , 'prev error'],
+    \ 'q' : ['<Plug>(coc-fix-current)'             , 'quickfix'],
+    \ 'r' : ['<Plug>(coc-references)'              , 'references'],
+    \ 'R' : ['<Plug>(coc-rename)'                  , 'rename'],
+    \ 's' : [':CocList -I symbols'                 , 'references'],
+    \ 'S' : [':CocList snippets'                   , 'snippets'],
+    \ 't' : ['<Plug>(coc-type-definition)'         , 'type definition'],
     \ }
 
 let g:which_key_map.g = {
     \ 'name' : '+git',
-    \ 'C' : [':Telescope git_branches',                    'Branches'],
-    \ 'a' : [':CocCommand fzf-preview.GitActions',         'Actions'],
-    \ 's' : [':CocCommand fzf-preview.GitStatus',          'Status'],
-    \ 'b' : [':Gblame',                                    'Blame'],
-    \ 'd' : [':Gvdiffsplit!',                              'Diff Split'],
-    \ 'l' : [':CocCommand fzf.-preview.GitLogs',           'Logs'],
-    \ '[' : [':diffget //2',                               'Diff Get Left'],
-    \ ']' : [':diffget //3',                               'Diff Get Right'],
-    \ 'w' : [':diffget //3',                               'Diff Get Right'],
+    \ 'C' : [':CocCommand fzf-preview.GitBranches', 'Branches'],
+    \ 'a' : [':CocCommand fzf-preview.GitActions',  'Actions'],
+    \ 's' : [':CocCommand fzf-preview.GitStatus',   'Status'],
+    \ 'b' : [':Gblame',                             'Blame'],
+    \ 'd' : [':Gvdiffsplit!',                       'Diff Split'],
+    \ 'l' : [':CocCommand fzf.-preview.GitLogs',    'Logs'],
+    \ '[' : [':diffget //2',                        'Diff Get Left'],
+    \ ']' : [':diffget //3',                        'Diff Get Right'],
+    \ 'w' : [':diffget //3',                        'Diff Get Right'],
     \ }
 
 " Single mappings
 let g:which_key_map['?'] = [ ':Commands',                                    'commands' ]
 let g:which_key_map['n'] = [ ':CocCommand explorer --sources=buffer+,file+', 'Toggle Explorer' ]
-let g:which_key_map['w'] = [ ':Telescope current_buffer_fuzzy_find',         'Current Buffer Fuzzy Find' ]
+let g:which_key_map['w'] = [ ':BLines',                                      'Current Buffer Fuzzy Find' ]
+let g:which_key_map['.'] = [ ':e ~/code/dotfiles/nvim/init.vim',             'init.vim' ]
+let g:which_key_map['v'] = [ '<C-W>v',                                       'split right']
+
 
 
 highlight QuickScopePrimary guifg='#afff5f' gui=underline ctermfg=155 cterm=underline
@@ -214,6 +261,9 @@ autocmd VimEnter *
 
 " Highlight the symbol and its references when holding the cursor.
 autocmd CursorHold * silent call CocActionAsync('highlight')
+
+call which_key#register('<Space>', "g:which_key_map")
+
 
 augroup mygroup
   autocmd!
@@ -241,17 +291,15 @@ command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 " Add `:OR` command for organize imports of the current buffer.
 command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
 
-" Hide status line
-autocmd! FileType which_key
-autocmd  FileType which_key set laststatus=0 noshowmode noruler
-  \| autocmd BufLeave <buffer> set laststatus=2 noshowmode ruler
+set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+
+autocmd BufNewFile,BufRead *.tsx,*.jsx set filetype=typescriptreact
 
 autocmd! User vim-which-key call which_key#register('<Space>', 'g:which_key_map')
 
-set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
-
 
 " END AUTO COMMANDS
+
 
 " FUNCTIONS
 function! s:check_back_space() abort
@@ -278,14 +326,8 @@ endfunc
 
 
 " MAPPINGS
-
-" inoremap <silent><expr> <TAB>
-"       \ pumvisible() ? "\<C-n>" :
-"       \ <SID>check_back_space() ? "\<TAB>" :
-      " \ coc#refresh()
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
-      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
       \ <SID>check_back_space() ? "\<TAB>" :
       \ coc#refresh()
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
@@ -306,8 +348,9 @@ xmap <silent> ga <Plug>(EasyAlign)
 nmap <silent> gR <Plug>(coc-rename)
 vmap ++ <plug>NERDCommenterToggle
 nmap ++ <plug>NERDCommenterToggle
-nmap <Tab> <cmd>BufferNext<CR>
-nmap <S-Tab> <cmd>BufferPrevious<CR>
+
+nnoremap <silent> <TAB> :bnext<CR>
+nnoremap <silent> <S-TAB> :bprevious<CR>
 
 "Navigate to window.
 nnoremap <C-w> <cmd>q<CR>
@@ -317,6 +360,13 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 noremap <silent><esc> <esc>:noh<CR><esc>
 
+"resize window
+nnoremap <silent> <C-Up>    :resize -2<CR>
+nnoremap <silent> <C-Down>  :resize +2<CR>
+nnoremap <silent> <C-Left>  :vertical resize -2<CR>
+nnoremap <silent> <C-Right> :vertical resize +2<CR>
+
+" I hate escape more than anything else
 inoremap jk <Esc>
 inoremap kj <Esc>
 
@@ -324,7 +374,8 @@ map <Enter> o<ESC>
 map <S-Enter> O<ESC>
 
 
-nnoremap <silent> <leader>      :<c-u>WhichKey '<Space>'<CR>
+
+nnoremap <silent> <leader> :<c-u>WhichKey '<Space>'<CR>
 vnoremap <silent> <leader> :<c-u>WhichKeyVisual '<Space>'<CR>
 
 
@@ -333,12 +384,8 @@ vnoremap < <gv
 vnoremap > >gv
 vnoremap <Tab> >gv
 vnoremap <S-Tab> <gv
-nnoremap <leader>n <cmd>CocCommand explorer --sources=buffer+,file+<cr>
-nnoremap <silent> <leader>w <cmd>Telescope current_buffer_fuzzy_find<cr>
-vmap H <Plug>(MvVisLeft)
 vmap J <Plug>(MvVisDown)
 vmap K <Plug>(MvVisUp)
-vmap L <Plug>(MvVisRight)
 
 
 

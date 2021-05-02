@@ -10,9 +10,6 @@ set nocompatible
 call plug#begin(expand('~/.config/nvim/plugged'))
 
 Plug 'Jorengarenar/vim-MvVis'
-Plug 'gruvbox-community/gruvbox'
-Plug 'NLKNguyen/papercolor-theme'
-Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'junegunn/vim-easy-align'
 Plug 'preservim/nerdcommenter'
@@ -25,7 +22,10 @@ Plug 'kyazdani42/nvim-web-devicons'
 Plug 'whatyouhide/vim-gotham'
 Plug 'unblevable/quick-scope'
 Plug 'junegunn/fzf.vim'
+Plug 'airblade/vim-rooter'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'sainnhe/sonokai'
+
 
 call plug#end()
 
@@ -77,8 +77,12 @@ set foldlevel=99
 " colorscheme gruvbox
 " colorscheme dracula
 " colorscheme gotham
-colorscheme PaperColor
-let $NVIM_TUI_ENABLE_TRUE_COLOR = 1
+" colorscheme PaperColor
+let g:sonokai_style = 'atlantis'
+colorscheme sonokai
+let g:sonokai_transparent_background = 1
+" let g:airline_theme='onehalfdark'
+" let $NVIM_TUI_ENABLE_TRUE_COLOR = 1
 " let g:material_theme_style= 'darker'
 " let g:airline_theme = 'material'
 
@@ -88,6 +92,7 @@ hi Normal     ctermbg=NONE guibg=NONE
 hi SignColumn ctermbg=NONE guibg=NONE
 " hi Search cterm=NONE ctermfg=grey ctermbg=blue
 " hi LineNr ctermbg=NONE guibg=NONE
+
 hi DiffAdd  guibg=#000000 guifg=#43a047
 hi DiffChange guibg=#000000 guifg=#fdd835
 hi DiffDelete guibg=#000000 guifg=#e53935
@@ -100,6 +105,7 @@ hi DiffDelete guibg=#000000 guifg=#e53935
 
 " SETTINGS
 " AIRLINE
+let g:airline_theme = 'sonokai'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#show_close_button = 1
 let g:airline#extensions#tabline#close_symbol = 'X'
@@ -151,6 +157,7 @@ let g:startify_commands = [
   \ {'pu': ['Update vim plugins', ':PlugUpdate | PlugUpgrade']},
   \ {'uc': ['Update coc Plugins', ':CocUpdate']},
   \ {'f':  ['Find file',          ':CocCommand fzf-preview.DirectoryFiles']},
+  \ {'ui': ['Edit init.vim',      ':e ~/code/dotfiles/nvim/init.vim']},
   \ {'h':  ['Help',               ':help']},
   \ ]
 
@@ -225,15 +232,14 @@ let g:which_key_map.l = {
 
 let g:which_key_map.g = {
     \ 'name' : '+git',
-    \ 'C' : [':CocCommand fzf-preview.GitBranches', 'Branches'],
-    \ 'a' : [':CocCommand fzf-preview.GitActions',  'Actions'],
-    \ 's' : [':CocCommand fzf-preview.GitStatus',   'Status'],
-    \ 'b' : [':Gblame',                             'Blame'],
-    \ 'd' : [':Gvdiffsplit!',                       'Diff Split'],
-    \ 'l' : [':CocCommand fzf.-preview.GitLogs',    'Logs'],
-    \ '[' : [':diffget //2',                        'Diff Get Left'],
-    \ ']' : [':diffget //3',                        'Diff Get Right'],
-    \ 'w' : [':diffget //3',                        'Diff Get Right'],
+    \ 'a' : [':CocCommand fzf-preview.GitActions', 'Actions'],
+    \ 'B' : [':Gblame',                            'Blame'],
+    \ 'l' : [':CocCommand fzf.-preview.GitLogs',   'Logs'],
+    \ '>' : ['<Plug>(coc-git-nextconflict)',       'Next Conflict'],
+    \ '<' : ['<Plug>(coc-git-prevconflict)',       'Prev Conflict'],
+    \ 'c' : ['<Plug>(coc-git-keepcurrent)',        'Keep Current'],
+    \ 'i' : ['<Plug>(coc-git-keepincoming)',       'Keep Incoming'],
+    \ 'b' : ['<Plug>(coc-git-keepboth)',           'Keep Both'],
     \ }
 
 " Single mappings
@@ -242,6 +248,7 @@ let g:which_key_map['n'] = [ ':CocCommand explorer --sources=buffer+,file+', 'To
 let g:which_key_map['w'] = [ ':BLines',                                      'Current Buffer Fuzzy Find' ]
 let g:which_key_map['.'] = [ ':e ~/code/dotfiles/nvim/init.vim',             'init.vim' ]
 let g:which_key_map['v'] = [ '<C-W>v',                                       'split right']
+let g:which_key_map['f'] = [ 'za',                                           'Fold']
 
 
 
@@ -298,6 +305,8 @@ autocmd BufNewFile,BufRead *.tsx,*.jsx set filetype=typescriptreact
 autocmd! User vim-which-key call which_key#register('<Space>', 'g:which_key_map')
 
 
+
+
 " END AUTO COMMANDS
 
 
@@ -345,7 +354,6 @@ nmap <silent> gf <Plug>(coc-fix-current)
 nmap <expr> <silent> <C-d> <SID>select_current_word()
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 xmap <silent> ga <Plug>(EasyAlign)
-nmap <silent> gR <Plug>(coc-rename)
 vmap ++ <plug>NERDCommenterToggle
 nmap ++ <plug>NERDCommenterToggle
 
@@ -354,6 +362,7 @@ nnoremap <silent> <S-TAB> :bprevious<CR>
 
 "Navigate to window.
 nnoremap <C-w> <cmd>q<CR>
+nnoremap <C-q> :bdelete<CR>
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
@@ -372,9 +381,6 @@ inoremap kj <Esc>
 
 map <Enter> o<ESC>
 map <S-Enter> O<ESC>
-
-
-
 nnoremap <silent> <leader> :<c-u>WhichKey '<Space>'<CR>
 vnoremap <silent> <leader> :<c-u>WhichKeyVisual '<Space>'<CR>
 

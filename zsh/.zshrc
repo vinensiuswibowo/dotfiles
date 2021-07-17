@@ -4,8 +4,10 @@ export GOPATH=$HOME/go
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 export PS1="VW~$ "
-export BAT_THEME="Dracula"
+# export BAT_THEME="Dracula"
 alias v="nvim"
+# alias go="/usr/local/Cellar/go/1.16.5/bin/go"
+alias go="/usr/local/Cellar/go@1.15/1.15.14/bin/go"
 # alias vim=/usr/local/bin/vim
 ZSH_THEME="arrow"
 plugins=(git)
@@ -18,16 +20,16 @@ source $ZSH/oh-my-zsh.sh
 #source $HOME/.zsh/aliases.zsh
 
 # Initialize the completion system
-autoload -Uz compinit
+# autoload -Uz compinit
 # Cache completion if nothing changed - faster startup time
-typeset -i updated_at=$(date +'%j' -r ~/.zcompdump 2>/dev/null || stat -f '%Sm' -t '%j' ~/.zcompdump 2>/dev/null)
-if [ $(date +'%j') != $updated_at ]; then
-  compinit -i
-else
-  compinit -C -i
-fi
+# typeset -i updated_at=$(date +'%j' -r ~/.zcompdump 2>/dev/null || stat -f '%Sm' -t '%j' ~/.zcompdump 2>/dev/null)
+# if [ $(date +'%j') != $updated_at ]; then
+#   compinit -i
+# else
+#   compinit -C -i
+# fi
 
-zmodload -i zsh/complist
+# zmodload -i zsh/complist
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm

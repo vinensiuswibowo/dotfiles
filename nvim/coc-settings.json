@@ -3,14 +3,14 @@
   "list.selectedSignText": " ",
   "coc.preferences.formatOnSaveFiletypes": [
     "css",
-    "less",
     "javascript",
     "typescript",
     "typescriptreact",
     "javascriptreact",
     "html",
-    "yaml",
-    "json"
+    "json",
+    "svelte",
+    "go"
   ],
   "git.removedSign.text": "▏",
   "git.changedSign.text": "▏",
@@ -28,6 +28,7 @@
     "filenames": [],
     "patternMatches": ["node_modules", ".git"]
   },
+  "rest-client.showHeaders": false,
   "explorer.keyMappings.global": {
     "<cr>": ["expandable?", "expand", "open"],
     "v": "open:vsplit"

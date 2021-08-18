@@ -215,7 +215,7 @@ let g:which_key_map.l = {
 
 
 let g:which_key_map['?'] = [ ':Commands',                                    'commands' ]
-let g:which_key_map['n'] = [ ':CocCommand explorer --sources=buffer+,file+', 'Toggle Explorer' ]
+let g:which_key_map['n'] = [ ':CocCommand explorer', 'Toggle Explorer' ]
 let g:which_key_map['.'] = [ ':e ~/.config/nvim/init.vim',             'Config' ]
 let g:which_key_map['v'] = [ '<C-W>v',                                       'split right']
 let g:which_key_map['f'] = [ 'za',                                                                    'Terminal']
@@ -240,11 +240,9 @@ let g:coc_global_extensions = [
 
 
 highlight QuickScopePrimary guifg='#afff5f' gui=underline ctermfg=155 cterm=underline
-
 highlight QuickScopeSecondary guifg='#5fffff' gui=underline ctermfg=81 cterm=underline
 
 au BufEnter * set fo-=c fo-=r fo-=o                     " stop annoying auto commenting on new lines
-
 au BufWritePre * :%s/\s\+$//e                           " remove trailing whitespaces before saving
 
 autocmd BufNewFile,BufRead *.tsx,*.jsx set filetype=typescriptreact
@@ -263,6 +261,11 @@ augroup mygroup
   autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 augroup end
+
+augroup Format
+  autocmd! * <buffer>
+  autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_seq_sync()
+augroup END
 
 autocmd FileType dashboard set showtabline=0 | autocmd WinLeave <buffer> set showtabline=2
 
@@ -312,7 +315,8 @@ command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
 
 nmap <expr> <silent> <C-d> <SID>select_current_word()
-nnoremap <silent> <C-K> :call <SID>show_documentation()<CR>
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
 "  END COC
 
 
@@ -372,9 +376,12 @@ map <S-Enter> O<ESC>
 nnoremap <silent> <leader> :<c-u>WhichKey '<Space>'<CR>
 vnoremap <silent> <leader> :<c-u>WhichKeyVisual '<Space>'<CR>
 tnoremap <Esc> <C-\><C-n>
-nnoremap <S-j> :m .+1<CR>==
-nnoremap <S-k> :m .-2<CR>==
-vnoremap <S-j> :m '>+1<CR>gv=gv
-vnoremap <S-k> :m '<-2<CR>gv=gv
+
+nnoremap <S-Down> :m .+1<CR>==
+nnoremap <S-Up> :m .-2<CR>==
+inoremap <S-Down> <Esc>:m .+1<CR>==gi
+inoremap <S-Up> <Esc>:m .-2<CR>==gi
+vnoremap <S-Down> :m '>+1<CR>gv=gv
+vnoremap <S-Up> :m '<-2<CR>gv=gv
 
 " :cfdo %s/<text to search>/<text to replace with>/g | update

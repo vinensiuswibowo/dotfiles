@@ -20,14 +20,17 @@
   "css.validate": false,
   "less.validate": false,
   "scss.validate": false,
-  "explorer.width": 35,
   "explorer.file.root.template": "[icon] [git] [hidden & 1][root]",
+  "explorer.position": "floating",
+  "explorer.floating.position": "center",
+  "explorer.floating.width": 100,
   "explorer.icon.enableNerdfont": true,
   "explorer.file.hiddenRules": {
     "extensions": [".DS_Store"],
     "filenames": [],
     "patternMatches": ["node_modules", ".git"]
   },
+  "tsserver.enableJavascript": true,
   "rest-client.showHeaders": false,
   "explorer.keyMappings.global": {
     "<cr>": ["expandable?", "expand", "open"],

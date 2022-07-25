@@ -1,8 +1,4 @@
 -- Only required if you have packer configured as `opt`
-vim.cmd([[packadd packer.nvim]])
-vim.cmd([[colorscheme tokyonight]])
-vim.cmd([[autocmd FileType alpha setlocal nofoldenable]])
-
 -- vim.api.nvim_create_autocmd({ "BufEnter", "BufAdd", "BufNew", "BufNewFile", "BufWinEnter" }, {
 -- 	group = vim.api.nvim_create_augroup("TS_FOLD_WORKAROUND", {}),
 -- 	callback = function()
@@ -10,11 +6,21 @@ vim.cmd([[autocmd FileType alpha setlocal nofoldenable]])
 -- 		vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 -- 	end,
 -- })
+--
 
-return require("packer").startup(function()
+vim.cmd [[packadd packer.nvim]]
+vim.cmd([[
+  augroup packer_user_config
+    autocmd!
+    autocmd BufWritePost plugins.lua source <afile> | PackerCompile
+  augroup end
+]])
+
+return require("packer").startup(function(use)
 	use({ "wbthomason/packer.nvim", module = "plenary" })
 	use({ "nvim-lua/plenary.nvim" })
-	use({ "folke/tokyonight.nvim" })
+	use({ "navarasu/onedark.nvim" })
+	use({ "shaunsingh/nord.nvim" })
 	use({ "nvim-telescope/telescope.nvim" })
 	use({ "kyazdani42/nvim-web-devicons" })
 	use({ "MunifTanjim/nui.nvim" })
@@ -27,7 +33,8 @@ return require("packer").startup(function()
 			require("nvim-treesitter.install").update({ with_sync = true })
 		end,
 	})
-	use({ "numToStr/Comment.nvim", module = "Comment", keys = { "gc", "gb" } })
+	-- use({ "numToStr/Comment.nvim", module = "Comment", keys = { "gc", "gb" } })
+  use({ "b3nj5m1n/kommentary" })
 	use({ "nvim-neo-tree/neo-tree.nvim", branch = "v2.x" })
 	use({ "nvim-lualine/lualine.nvim" })
 	use({ "rafamadriz/friendly-snippets", module = "cmp_nvim_lsp", event = "InsertEnter" })

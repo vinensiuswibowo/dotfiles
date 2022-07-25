@@ -7,12 +7,15 @@ opt.smartindent = true
 opt.tabstop = 2
 opt.softtabstop = 2
 opt.title = true
+opt.fillchars = { eob = " " }
 opt.clipboard = "unnamedplus"
 opt.ignorecase = true
 opt.smartcase = true
 opt.mouse = "a"
 opt.number = true
 opt.numberwidth = 2
+opt.laststatus = 3 -- global statusline
+opt.showmode = false
 opt.ruler = false
 opt.shortmess:append("sI")
 opt.signcolumn = "yes"
@@ -57,13 +60,5 @@ for _, plugin in pairs(default_plugins) do
 	g["loaded_" .. plugin] = 1
 end
 
-local default_providers = {
-	"node",
-	"perl",
-	"python3",
-	"ruby",
-}
-
-g.tokyonight_style = "night"
-g.tokyonight_transparent = true
 g.mapleader = " "
+g.kommentary_create_default_mappings = false

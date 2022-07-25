@@ -1,4 +1,6 @@
 local nnoremap = require("keymap").nnoremap
+local xnoremap = require("keymap").xnoremap
+local inoremap = require("keymap").inoremap
 -- local vnoremap = require("keymap").vnoremap
 local wk = require("which-key")
 
@@ -16,11 +18,11 @@ wk.register({
 		},
 		g = {
 			name = "+Git",
-			a = { "<cmd>Git commit <CR>", "Commit" },
-			c = { "<cmd>Telescope git_commits <CR>", "Log" },
+			c = { "<cmd>Git commit <CR>", "Commit" },
+			l = { "<cmd>Telescope git_commits <CR>", "Log" },
 			s = { "<cmd>Telescope git_status <CR>", "Status" },
 			b = { "<cmd>Telescope git_branches <CR>", "Branches" },
-			b = { "<cmd>Git blame <CR>", "Blame" },
+			B = { "<cmd>Git blame <CR>", "Blame" },
 		},
 		l = {
 			name = "+LSP",
@@ -54,3 +56,8 @@ nnoremap("gd", vim.lsp.buf.definition)
 nnoremap("K", vim.lsp.buf.hover)
 nnoremap("gi", vim.lsp.buf.implementation)
 nnoremap("gr", vim.lsp.buf.references)
+nnoremap("++", "<Plug>kommentary_line_default")
+xnoremap("++", "<Plug>kommentary_visual_default")
+
+inoremap("jk", "<ESC>")
+inoremap("kj", "<ESC>")

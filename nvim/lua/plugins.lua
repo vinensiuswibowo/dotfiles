@@ -1,13 +1,3 @@
--- Only required if you have packer configured as `opt`
--- vim.api.nvim_create_autocmd({ "BufEnter", "BufAdd", "BufNew", "BufNewFile", "BufWinEnter" }, {
--- 	group = vim.api.nvim_create_augroup("TS_FOLD_WORKAROUND", {}),
--- 	callback = function()
--- 		vim.opt.foldmethod = "expr"
--- 		vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
--- 	end,
--- })
---
-
 vim.cmd [[packadd packer.nvim]]
 vim.cmd([[
   augroup packer_user_config
@@ -33,10 +23,8 @@ return require("packer").startup(function(use)
 			require("nvim-treesitter.install").update({ with_sync = true })
 		end,
 	})
-	-- use({ "numToStr/Comment.nvim", module = "Comment", keys = { "gc", "gb" } })
   use({ "b3nj5m1n/kommentary" })
 	use({ "nvim-neo-tree/neo-tree.nvim", branch = "v2.x" })
-	use({ "nvim-lualine/lualine.nvim" })
 	use({ "rafamadriz/friendly-snippets", module = "cmp_nvim_lsp", event = "InsertEnter" })
 	use({ "hrsh7th/nvim-cmp", after = "friendly-snippets" })
 	use({ "L3MON4D3/LuaSnip", wants = "friendly-snippets", after = "nvim-cmp" })

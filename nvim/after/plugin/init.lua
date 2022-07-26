@@ -34,24 +34,6 @@ for _, lsp in ipairs(servers) do
   })
 end
 
-local function lsp_info()
-  if rawget(vim, "lsp") then
-    for _, client in ipairs(vim.lsp.get_active_clients()) do
-      if client.attached_buffers[vim.api.nvim_get_current_buf()] then
-        return (vim.o.columns > 100 and "%#St_LspStatus#" .. "   LSP ~ " .. client.name .. " ")
-            or "   LSP "
-      end
-    end
-  end
-end
-
-
-local function file_path()
-  local filepath = vim.fn.expand("%:r")
-  local ext = vim.fn.expand("%:e")
-  return filepath .. "." .. ext
-end
-
 require("nvim-autopairs").setup({
   fast_wrap = {},
   disable_filetype = { "TelescopePrompt", "vim" },
@@ -99,20 +81,6 @@ cmp.setup({
   },
 })
 cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
-
-require("lualine").setup({
-  options = {
-    theme = "onedark",
-  },
-  sections = {
-    lualine_a = { "mode" },
-    lualine_b = { "branch", "diff", "diagnostics" },
-    lualine_c = { file_path },
-    lualine_x = { lsp_info, "fileformat", "filetype" },
-    lualine_y = { "progress" },
-    lualine_z = { "location" },
-  },
-})
 
 require("gitsigns").setup({
   signs = {

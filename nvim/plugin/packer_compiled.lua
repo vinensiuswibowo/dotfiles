@@ -152,11 +152,6 @@ _G.packer_plugins = {
     path = "/Users/Vinensius.Wibowo/.local/share/nvim/site/pack/packer/start/kommentary",
     url = "https://github.com/b3nj5m1n/kommentary"
   },
-  ["lualine.nvim"] = {
-    loaded = true,
-    path = "/Users/Vinensius.Wibowo/.local/share/nvim/site/pack/packer/start/lualine.nvim",
-    url = "https://github.com/nvim-lualine/lualine.nvim"
-  },
   ["neo-tree.nvim"] = {
     loaded = true,
     path = "/Users/Vinensius.Wibowo/.local/share/nvim/site/pack/packer/start/neo-tree.nvim",
@@ -187,7 +182,7 @@ _G.packer_plugins = {
     url = "https://github.com/windwp/nvim-autopairs"
   },
   ["nvim-cmp"] = {
-    after = { "LuaSnip", "nvim-autopairs" },
+    after = { "nvim-autopairs", "LuaSnip" },
     load_after = {
       ["friendly-snippets"] = true
     },

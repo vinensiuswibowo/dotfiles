@@ -1,44 +1,42 @@
-local nnoremap = require("keymap").nnoremap
-local xnoremap = require("keymap").xnoremap
+local nnoremap = require("keymap").nnoremap local xnoremap = require("keymap").xnoremap
 local inoremap = require("keymap").inoremap
 -- local vnoremap = require("keymap").vnoremap
 local wk = require("which-key")
 
 wk.register({
-	["<leader>"] = {
-		q = { "<cmd>bdelete<cr>", "Close Buffer" },
-		f = {
-			name = "+Find",
-			n = { "<cmd>enew<cr>", "New File" },
-			f = { "<cmd>Telescope find_files<cr>", "Find File" },
-			a = { "<cmd>Telescope find_files follow=true no_ignore=true hidden=true <CR>", "Find All File" },
-			r = { "<cmd>Telescope oldfiles<cr>", "Open Recent File" },
-			w = { "<cmd>Telescope live_grep<cr>", "Live Grep" },
-			b = { "<cmd>Telescope buffers <CR>", "Buffers" },
-		},
-		g = {
-			name = "+Git",
-			c = { "<cmd>Git commit <CR>", "Commit" },
-			l = { "<cmd>Telescope git_commits <CR>", "Log" },
-			s = { "<cmd>Telescope git_status <CR>", "Status" },
-			b = { "<cmd>Telescope git_branches <CR>", "Branches" },
-			B = { "<cmd>Git blame <CR>", "Blame" },
-		},
-		l = {
-			name = "+LSP",
-			e = { vim.diagnostic.open_float, "Diagnostic" },
-			q = { vim.diagnostic.setloclist, "Diagnostic Loc List" },
-			f = { vim.lsp.buf.formatting, "Code Formatting" },
-			c = { vim.lsp.buf.code_action, "Code Action" },
-			r = { vim.lsp.buf.rename, "Rename" },
-			d = { vim.lsp.buf.type_definition, "Type Definition" },
-		},
-		t = {
-			name = "+Trouble",
-			t = { "<cmd>Trouble document_diagnostics<cr>", "Document Diagnostics" },
-			f = { "<cmd>Trouble quickfix<cr>", "Quickfix" },
-		},
-	},
+  ["<leader>"] = {
+    q = { "<cmd>bdelete<cr>", "Close Buffer" },
+    f = {
+      name = "+Find",
+      n = { "<cmd>enew<cr>", "New File" },
+      f = { "<cmd>Telescope find_files<cr>", "Find File" },
+      a = { "<cmd>Telescope find_files follow=true no_ignore=true hidden=true <CR>", "Find All File" },
+      o = { "<cmd>Telescope oldfiles<cr>", "Open Recent File" },
+      w = { "<cmd>Telescope live_grep<cr>", "Live Grep" },
+      b = { "<cmd>Telescope buffers <CR>", "Buffers" },
+      k = { "<cmd>Telescope keymaps <CR>", "Keymaps" },
+      r = { "<cmd>lua require('spectre').open() <cr>", "Find and Replace"}
+    },
+    g = {
+      name = "+Git",
+      c = { "<cmd>Git commit <CR>", "Commit" },
+      l = { "<cmd>Telescope git_commits <CR>", "Log" },
+      s = { "<cmd>Telescope git_status <CR>", "Status" },
+      b = { "<cmd>Telescope git_branches <CR>", "Branches" },
+      B = { "<cmd>Git blame <CR>", "Blame" },
+    },
+    l = {
+      name = "+LSP",
+      e = { vim.diagnostic.open_float, "Diagnostic" },
+      q = { vim.diagnostic.setloclist, "Diagnostic Loc List" },
+      f = { vim.lsp.buf.formatting, "Code Formatting" },
+      c = { vim.lsp.buf.code_action, "Code Action" },
+      r = { vim.lsp.buf.rename, "Rename" },
+      d = { vim.lsp.buf.type_definition, "Type Definition" },
+    },
+    j = { "<cmd>HopWordMW<cr>", "Jump Word" },
+    L = { "<cmd>HopLineStartMW<cr>", "Jump Line" },
+  },
 })
 
 nnoremap("<ESC>", "<cmd> noh <CR>")

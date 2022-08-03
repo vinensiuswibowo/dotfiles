@@ -1,5 +1,8 @@
 local opt = vim.opt
 local g = vim.g
+local api = vim.api
+local fn = vim.fn
+local new_cmd = api.nvim_create_user_command
 
 opt.expandtab = true
 opt.shiftwidth = 2
@@ -26,6 +29,7 @@ opt.timeoutlen = 200
 opt.undofile = true
 opt.updatetime = 250
 opt.relativenumber = true
+opt.wrap = false
 
 local default_plugins = {
   "2html_plugin",
@@ -104,7 +108,7 @@ local Mode = {
 function lsp_info()
   if rawget(vim, "lsp") then
     for _, client in ipairs(vim.lsp.get_active_clients()) do
-      if client.attached_buffers[vim.api.nvim_get_current_buf()] then
+      if client.attached_buffers[api.nvim_get_current_buf()] then
         return (vim.o.columns > 100 and "%#St_LspStatus#" .. "   LSP ~ " .. client.name .. " ") or "   LSP "
       end
       return ""
@@ -152,7 +156,7 @@ function lsp_progress()
 end
 
 function get_mode()
-  local mode_code = vim.api.nvim_get_mode().mode
+  local mode_code = api.nvim_get_mode().mode
   if Mode[mode_code] == nil then
     return mode_code
   end
@@ -186,3 +190,28 @@ function statusline()
 end
 
 opt.statusline = "%!luaeval('statusline()')"
+
+-- vim.g.TbTabsToggled = 0
+
+--[[ function tabline()
+  local s = ''
+  for index, buffer in ipairs(vim.split(vim.fn.execute ":buffers", "\n")) do
+    local bufname = fn.bufname(buffer)
+    local bufmodified = fn.getbufvar(buffer, '&mod')
+    if bufmodified == 1 then
+      s = s .. '*' .. ' '
+    end
+    if bufname ~= '' then
+      s = s .. '[' .. index .. '] ' .. fn.fnamemodify(bufname, ':t') .. ' '
+    end
+  end
+  return s
+end
+
+vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead", "TabEnter" }, {
+  pattern = "*",
+  callback = function()
+    opt.showtabline = 2
+    opt.tabline = "%!luaeval('tabline()')"
+  end
+}) ]]

@@ -147,6 +147,11 @@ _G.packer_plugins = {
     path = "/Users/Vinensius.Wibowo/.local/share/nvim/site/pack/packer/start/gitsigns.nvim",
     url = "https://github.com/lewis6991/gitsigns.nvim"
   },
+  ["hop.nvim"] = {
+    loaded = true,
+    path = "/Users/Vinensius.Wibowo/.local/share/nvim/site/pack/packer/start/hop.nvim",
+    url = "https://github.com/phaazon/hop.nvim"
+  },
   kommentary = {
     loaded = true,
     path = "/Users/Vinensius.Wibowo/.local/share/nvim/site/pack/packer/start/kommentary",
@@ -167,11 +172,6 @@ _G.packer_plugins = {
     path = "/Users/Vinensius.Wibowo/.local/share/nvim/site/pack/packer/start/nui.nvim",
     url = "https://github.com/MunifTanjim/nui.nvim"
   },
-  ["null-ls.nvim"] = {
-    loaded = true,
-    path = "/Users/Vinensius.Wibowo/.local/share/nvim/site/pack/packer/start/null-ls.nvim",
-    url = "https://github.com/jose-elias-alvarez/null-ls.nvim"
-  },
   ["nvim-autopairs"] = {
     load_after = {
       ["nvim-cmp"] = true
@@ -182,7 +182,7 @@ _G.packer_plugins = {
     url = "https://github.com/windwp/nvim-autopairs"
   },
   ["nvim-cmp"] = {
-    after = { "nvim-autopairs", "LuaSnip" },
+    after = { "LuaSnip", "nvim-autopairs" },
     load_after = {
       ["friendly-snippets"] = true
     },
@@ -200,6 +200,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/Vinensius.Wibowo/.local/share/nvim/site/pack/packer/start/nvim-lspconfig",
     url = "https://github.com/neovim/nvim-lspconfig"
+  },
+  ["nvim-spectre"] = {
+    loaded = true,
+    path = "/Users/Vinensius.Wibowo/.local/share/nvim/site/pack/packer/start/nvim-spectre",
+    url = "https://github.com/windwp/nvim-spectre"
   },
   ["nvim-treesitter"] = {
     loaded = true,
@@ -232,11 +237,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/Vinensius.Wibowo/.local/share/nvim/site/pack/packer/start/telescope.nvim",
     url = "https://github.com/nvim-telescope/telescope.nvim"
-  },
-  ["trouble.nvim"] = {
-    loaded = true,
-    path = "/Users/Vinensius.Wibowo/.local/share/nvim/site/pack/packer/start/trouble.nvim",
-    url = "https://github.com/folke/trouble.nvim"
   },
   ["vim-fugitive"] = {
     loaded = true,

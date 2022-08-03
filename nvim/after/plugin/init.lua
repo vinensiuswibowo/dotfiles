@@ -434,3 +434,5 @@ vim.api.nvim_create_autocmd("VimEnter", {
     require('telescope.builtin').find_files()
   end,
 })
+
+require("bufferline").setup()

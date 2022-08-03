@@ -30,6 +30,7 @@ opt.undofile = true
 opt.updatetime = 250
 opt.relativenumber = true
 opt.wrap = false
+opt.cursorline = true
 
 local default_plugins = {
   "2html_plugin",

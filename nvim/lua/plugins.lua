@@ -40,5 +40,9 @@ return require("packer").startup(function(use)
   use({ "windwp/nvim-spectre" })
   use({ 'phaazon/hop.nvim',
     branch = 'v2', -- optional but strongly recommended
- })
+  })
+  use({
+    'romgrk/barbar.nvim',
+    requires = { 'kyazdani42/nvim-web-devicons' }
+  })
 end)

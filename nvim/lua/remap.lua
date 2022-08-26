@@ -1,5 +1,7 @@
-local nnoremap = require("keymap").nnoremap local xnoremap = require("keymap").xnoremap
+local nnoremap = require("keymap").nnoremap
+local xnoremap = require("keymap").xnoremap
 local inoremap = require("keymap").inoremap
+local tnoremap = require("keymap").tnoremap
 -- local vnoremap = require("keymap").vnoremap
 local wk = require("which-key")
 
@@ -15,7 +17,7 @@ wk.register({
       w = { "<cmd>Telescope live_grep<cr>", "Live Grep" },
       b = { "<cmd>Telescope buffers <CR>", "Buffers" },
       k = { "<cmd>Telescope keymaps <CR>", "Keymaps" },
-      r = { "<cmd>lua require('spectre').open() <cr>", "Find and Replace"}
+      r = { "<cmd>lua require('spectre').open() <cr>", "Find and Replace" }
     },
     g = {
       name = "+Git",
@@ -34,6 +36,9 @@ wk.register({
       r = { vim.lsp.buf.rename, "Rename" },
       d = { vim.lsp.buf.type_definition, "Type Definition" },
     },
+    t = { function()
+      require("nvterm.terminal").toggle "float"
+    end, "Toggle Terminal" },
     j = { "<cmd>HopWordMW<cr>", "Jump Word" },
     L = { "<cmd>HopLineStartMW<cr>", "Jump Line" },
   },
@@ -59,3 +64,7 @@ xnoremap("++", "<Plug>kommentary_visual_default")
 
 inoremap("jk", "<ESC>")
 inoremap("kj", "<ESC>")
+
+tnoremap("<ESC>", function()
+  require("nvterm.terminal").toggle "float"
+end)

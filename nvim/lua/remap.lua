@@ -33,8 +33,12 @@ wk.register({
       q = { vim.diagnostic.setloclist, "Diagnostic Loc List" },
       f = { vim.lsp.buf.formatting, "Code Formatting" },
       c = { vim.lsp.buf.code_action, "Code Action" },
-      r = { vim.lsp.buf.rename, "Rename" },
-      d = { vim.lsp.buf.type_definition, "Type Definition" },
+      R = { vim.lsp.buf.rename, "Rename" },
+      r = { vim.lsp.buf.references, "References" },
+      t = { vim.lsp.buf.type_definition, "Type Definition" },
+      d = { vim.lsp.buf.definition, "Definition" },
+      D = { vim.lsp.buf.declaration, "Declaration" },
+      i = { vim.lsp.buf.implementation, "implementation" }
     },
     t = { function()
       require("nvterm.terminal").toggle "float"

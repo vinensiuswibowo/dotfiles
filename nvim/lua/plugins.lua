@@ -9,8 +9,7 @@ vim.cmd([[
 return require("packer").startup(function(use)
   use({ "wbthomason/packer.nvim", module = "plenary" })
   use({ "nvim-lua/plenary.nvim" })
-  use({ "navarasu/onedark.nvim" })
-  use({ "shaunsingh/nord.nvim" })
+  use({ "folke/tokyonight.nvim" })
   use({ "nvim-telescope/telescope.nvim" })
   use({ "kyazdani42/nvim-web-devicons" })
   use({ "MunifTanjim/nui.nvim" })
@@ -35,17 +34,12 @@ return require("packer").startup(function(use)
   use({ "hrsh7th/cmp-path", after = "cmp-buffer" })
   use({ "windwp/nvim-autopairs", after = "nvim-cmp" })
   use({ "folke/which-key.nvim" })
-  -- use({ "jose-elias-alvarez/null-ls.nvim" })
   use({ "tpope/vim-fugitive" })
   use({ "windwp/nvim-spectre" })
-  use({ 'phaazon/hop.nvim',
-    branch = 'v2', -- optional but strongly recommended
-  })
-  use({
-    'romgrk/barbar.nvim',
-    requires = { 'kyazdani42/nvim-web-devicons' }
-  })
-  use({
-    "NvChad/nvterm",
-  })
+  use({ 'phaazon/hop.nvim', branch = 'v2' })
+  use({ 'romgrk/barbar.nvim', requires = { 'kyazdani42/nvim-web-devicons' } })
+  use({ "NvChad/nvterm" })
+  use({ "akinsho/git-conflict.nvim", tag = "*", config = function()
+    require("git-conflict").setup()
+  end, })
 end)

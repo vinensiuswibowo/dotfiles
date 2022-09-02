@@ -67,6 +67,13 @@ end
 
 g.mapleader = " "
 g.kommentary_create_default_mappings = false
+g.tokyonight_style = "night"
+g.tokyonight_italic_functions = true
+g.tokyonight_sidebars = { "qf", "vista_kind", "terminal", "packer" }
+g.tokyonight_colors = {
+  comment = "#bfbfbf",
+}
+
 
 local Mode = {
   ['n']     = 'NORMAL',

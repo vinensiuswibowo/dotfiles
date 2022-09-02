@@ -1,9 +1,12 @@
-vim.cmd([[colorscheme onedark]])
-vim.cmd([[autocmd FileType alpha setlocal nofoldenable]])
 local g = vim.g
 local api = vim.api
 local fn = vim.fn
 local new_cmd = api.nvim_create_user_command
+local cmd = vim.cmd
+
+cmd([[colorscheme tokyonight]])
+cmd([[autocmd FileType alpha setlocal nofoldenable]])
+cmd([[autocmd BufWritePre * lua vim.lsp.buf.formatting_sync()]])
 
 require("nvim-lsp-installer").setup({
   automatic_installation = true,
@@ -55,9 +58,9 @@ luasnip.config.set_config({
 require("luasnip.loaders.from_vscode").lazy_load()
 require("luasnip.loaders.from_vscode").lazy_load { paths = vim.g.luasnippets_path or "" }
 
-vim.api.nvim_create_autocmd("InsertLeave", {
+api.nvim_create_autocmd("InsertLeave", {
   callback = function()
-    if require("luasnip").session.current_nodes[vim.api.nvim_get_current_buf()]
+    if require("luasnip").session.current_nodes[api.nvim_get_current_buf()]
         and not require("luasnip").session.jump_active
     then
       require("luasnip").unlink_current()
@@ -215,25 +218,6 @@ require("telescope").setup({
   -- extensions_list = { "themes", "terms" },
 })
 
-require('onedark').setup {
-  style = 'darker',
-  transparent = false,
-  toggle_style_list = { 'dark', 'darker', 'cool', 'deep', 'warm', 'warmer', 'light' },
-  diagnostics = {
-    darker = true, -- darker colors for diagnostic
-    undercurl = true, -- use undercurl instead of underline for diagnostics
-    background = false, -- use background color for virtual text
-  },
-  code_style = {
-    comments = 'italic',
-    keywords = 'none',
-    functions = 'none',
-    strings = 'none',
-    variables = 'none'
-  },
-}
-require('onedark').load()
-
 require("neo-tree").setup({
   close_if_last_window = false, -- Close Neo-tree if it is the last window left in the tab
   popup_border_style = "rounded",
@@ -241,13 +225,6 @@ require("neo-tree").setup({
   enable_diagnostics = true,
   sort_case_insensitive = false, -- used when sorting files and directories in the tree
   sort_function = nil, -- use a custom function for sorting files and directories in the tree
-  -- sort_function = function (a,b)
-  --       if a.type == b.type then
-  --           return a.path > b.path
-  --       else
-  --           return a.type > b.type
-  --       end
-  --   end , -- this sorts files and directories descendantly
   default_component_configs = {
     container = {
       enable_character_fade = true
@@ -286,12 +263,10 @@ require("neo-tree").setup({
     },
     git_status = {
       symbols = {
-        -- Change type
         added     = "", -- or "✚", but this is redundant info if you use git_status_colors on the name
         modified  = "", -- or "", but this is redundant info if you use git_status_colors on the name
         deleted   = "✖", -- this can only be used in the git_status source
         renamed   = "", -- this can only be used in the git_status source
-        -- Status type
         untracked = "",
         ignored   = "",
         unstaged  = "",
@@ -316,8 +291,6 @@ require("neo-tree").setup({
       ["<cr>"] = "open",
       ["S"] = "open_split",
       ["v"] = "open_vsplit",
-      -- ["S"] = "split_with_window_picker",
-      -- ["s"] = "vsplit_with_window_picker",
       ["t"] = "open_tabnew",
       ["w"] = "open_with_window_picker",
       ["C"] = "close_node",
@@ -336,12 +309,6 @@ require("neo-tree").setup({
       ["x"] = "cut_to_clipboard",
       ["p"] = "paste_from_clipboard",
       ["c"] = "copy", -- takes text input for destination, also accepts the optional config.show_path option like "add":
-      -- ["c"] = {
-      --  "copy",
-      --  config = {
-      --    show_path = "none" -- "none", "relative", "absolute"
-      --  }
-      --}
       ["m"] = "move", -- takes text input for destination, also accepts the optional config.show_path option like "add".
       ["q"] = "close_window",
       ["R"] = "refresh",
@@ -367,15 +334,9 @@ require("neo-tree").setup({
       },
     },
     follow_current_file = false, -- This will find and focus the file in the active buffer every
-    -- time the current file is changed while the tree is open.
     group_empty_dirs = false, -- when true, empty folders will be grouped together
     hijack_netrw_behavior = "open_default", -- netrw disabled, opening a directory opens neo-tree
-    -- in whatever position is specified in window.position
-    -- "open_current",  -- netrw disabled, opening a directory opens within the
-    -- window like netrw would, regardless of window.position
-    -- "disabled",    -- netrw left alone, neo-tree does not handle opening dirs
     use_libuv_file_watcher = false, -- This will use the OS level file watchers to detect changes
-    -- instead of relying on nvim autocmd events.
     window = {
       mappings = {
         ["<bs>"] = "navigate_up",
@@ -426,12 +387,12 @@ require("hop").setup({
 require('spectre').setup()
 
 
-vim.api.nvim_create_autocmd("VimEnter", {
+api.nvim_create_autocmd("VimEnter", {
   pattern = "*",
   nested = true,
   callback = function()
-    local buf_is_valid = vim.api.nvim_buf_is_valid
-    local buf_get_name = vim.api.nvim_buf_get_name
+    local buf_is_valid = api.nvim_buf_is_valid
+    local buf_get_name = api.nvim_buf_get_name
     local name = buf_is_valid(1) and buf_get_name(1) or nil
     if name == '' or not name then
       require('telescope.builtin').find_files()

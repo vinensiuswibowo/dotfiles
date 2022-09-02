@@ -15,7 +15,6 @@ wk.register({
       a = { "<cmd>Telescope find_files follow=true no_ignore=true hidden=true <CR>", "Find All File" },
       o = { "<cmd>Telescope oldfiles<cr>", "Open Recent File" },
       w = { "<cmd>Telescope live_grep<cr>", "Live Grep" },
-      b = { "<cmd>Telescope buffers <CR>", "Buffers" },
       k = { "<cmd>Telescope keymaps <CR>", "Keymaps" },
       r = { "<cmd>lua require('spectre').open() <cr>", "Find and Replace" }
     },
@@ -26,6 +25,15 @@ wk.register({
       s = { "<cmd>Telescope git_status <CR>", "Status" },
       b = { "<cmd>Telescope git_branches <CR>", "Branches" },
       B = { "<cmd>Git blame <CR>", "Blame" },
+    },
+    c = {
+      name = "+Conflict",
+      o = { "<Plug>(git-conflict-ours)", "Use Ours" },
+      t = { "<Plug>(git-conflict-theirs)", "Use Theirs" },
+      b = { "<Plug>(git-conflict-both)", "Use Both" },
+      N = { "<Plug>(git-conflict-none)", "Use None" },
+      p = { "<Plug>(git-conflict-prev-conflict)", "Prev Conflict" },
+      n = { "<Plug>(git-conflict-next-conflict)", "Next Conflict" },
     },
     l = {
       name = "+LSP",
@@ -39,6 +47,11 @@ wk.register({
       d = { vim.lsp.buf.definition, "Definition" },
       D = { vim.lsp.buf.declaration, "Declaration" },
       i = { vim.lsp.buf.implementation, "implementation" }
+    },
+    b = {
+      name = "+Buffer",
+      d = { "<cmd>%bd|e#<cr>", "Delete All Buffers" },
+      f = { "<cmd>Telescope buffers <cr>", "List Buffers" },
     },
     t = { function()
       require("nvterm.terminal").toggle "float"

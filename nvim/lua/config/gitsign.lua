@@ -1,4 +1,3 @@
-
 require("gitsigns").setup({
   signs = {
     add = { hl = "DiffAdd", text = " +", numhl = "GitSignsAddNr" },
@@ -8,4 +7,3 @@ require("gitsigns").setup({
     changedelete = { hl = "DiffChangeDelete", text = " ~", numhl = "GitSignsChangeNr" },
   },
 })
-

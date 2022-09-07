@@ -1,4 +1,3 @@
-
 require("telescope").setup({
   defaults = {
     vimgrep_arguments = {
@@ -10,9 +9,6 @@ require("telescope").setup({
       "--column",
       "--smart-case",
     },
-    -- prompt_prefix = "   ",
-    -- selection_caret = "  ",
-    -- entry_prefix = "  ",
     initial_mode = "insert",
     selection_strategy = "reset",
     sorting_strategy = "ascending",
@@ -49,4 +45,3 @@ require("telescope").setup({
   },
   -- extensions_list = { "themes", "terms" },
 })
-

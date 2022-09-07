@@ -1,8 +1,6 @@
 local opt = vim.opt
 local g = vim.g
 local api = vim.api
-local fn = vim.fn
-local new_cmd = api.nvim_create_user_command
 
 opt.expandtab = true
 opt.shiftwidth = 2
@@ -74,6 +72,7 @@ g.tokyonight_colors = {
   comment = "#bfbfbf",
 }
 
+g.loaded_python_provider = 0
 
 local Mode = {
   ['n']     = 'NORMAL',
@@ -113,7 +112,7 @@ local Mode = {
   ['t']     = 'TERMINAL',
 }
 
-function lsp_info()
+local function lsp_info()
   if rawget(vim, "lsp") then
     for _, client in ipairs(vim.lsp.get_active_clients()) do
       if client.attached_buffers[api.nvim_get_current_buf()] then
@@ -125,7 +124,7 @@ function lsp_info()
   return ""
 end
 
-function lsp_diagnostic()
+local function lsp_diagnostic()
   if not rawget(vim, "lsp") then
     return ""
   end
@@ -142,7 +141,7 @@ function lsp_diagnostic()
   return errors .. warnings .. hints .. info
 end
 
-function lsp_progress()
+local function lsp_progress()
   if not rawget(vim, "lsp") then
     return ""
   end
@@ -163,7 +162,7 @@ function lsp_progress()
   return (content) or ""
 end
 
-function get_mode()
+local function get_mode()
   local mode_code = api.nvim_get_mode().mode
   if Mode[mode_code] == nil then
     return mode_code
@@ -171,7 +170,7 @@ function get_mode()
   return Mode[mode_code]
 end
 
-function get_git()
+local function get_git()
   if not vim.b.gitsigns_head or vim.b.gitsigns_git_status then
     return ""
   end
@@ -184,7 +183,7 @@ function get_git()
   return branch_name .. added .. changed .. removed
 end
 
-function statusline()
+function Statusline()
   local s = ""
   s = s .. " " .. get_mode() .. " | %f | "
   s = s .. get_git()
@@ -197,29 +196,4 @@ function statusline()
   return s
 end
 
-opt.statusline = "%!luaeval('statusline()')"
-
--- vim.g.TbTabsToggled = 0
-
---[[ function tabline()
-  local s = ''
-  for index, buffer in ipairs(vim.split(vim.fn.execute ":buffers", "\n")) do
-    local bufname = fn.bufname(buffer)
-    local bufmodified = fn.getbufvar(buffer, '&mod')
-    if bufmodified == 1 then
-      s = s .. '*' .. ' '
-    end
-    if bufname ~= '' then
-      s = s .. '[' .. index .. '] ' .. fn.fnamemodify(bufname, ':t') .. ' '
-    end
-  end
-  return s
-end
-
-vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead", "TabEnter" }, {
-  pattern = "*",
-  callback = function()
-    opt.showtabline = 2
-    opt.tabline = "%!luaeval('tabline()')"
-  end
-}) ]]
+opt.statusline = "%!luaeval('Statusline()')"

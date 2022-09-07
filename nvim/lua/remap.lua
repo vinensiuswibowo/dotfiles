@@ -2,7 +2,6 @@ local nnoremap = require("keymap").nnoremap
 local xnoremap = require("keymap").xnoremap
 local inoremap = require("keymap").inoremap
 local tnoremap = require("keymap").tnoremap
--- local vnoremap = require("keymap").vnoremap
 local wk = require("which-key")
 
 wk.register({

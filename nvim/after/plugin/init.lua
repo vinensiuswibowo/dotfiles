@@ -1,6 +1,6 @@
 cmd = vim.cmd
 
-cmd([[colorscheme tokyonight]])
+cmd([[colorscheme tokyonight-night]])
 cmd([[autocmd FileType alpha setlocal nofoldenable]])
 cmd([[autocmd BufWritePre * lua vim.lsp.buf.formatting_sync()]])
 

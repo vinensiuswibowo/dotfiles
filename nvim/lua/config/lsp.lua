@@ -21,34 +21,14 @@ require("nvim-lsp-installer").setup({
   max_concurrent_installers = 10,
 })
 
-local lspconfig = require("lspconfig")
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
 
-local servers = {
-  "tsserver",
-  "cssls",
-  "gopls",
-  "html",
-  "sumneko_lua",
-  "angularls",
-  "jsonls"
-}
-for _, lsp in ipairs(servers) do
-  lspconfig[lsp].setup({
-    capabilities = capabilities,
-  })
-end
-
+local cmp = require 'cmp'
 local luasnip = require("luasnip")
-local cmp_autopairs = require("nvim-autopairs.completion.cmp")
-local cmp = require("cmp")
 
-luasnip.config.set_config({
+--[[ luasnip.config.set_config({
   history = true,
   updateevents = "TextChanged,TextChangedI",
-})
-
+}) ]]
 require("luasnip.loaders.from_vscode").lazy_load()
 require("luasnip.loaders.from_vscode").lazy_load { paths = vim.g.luasnippets_path or "" }
 
@@ -70,19 +50,21 @@ vim.diagnostic.config({
 
 cmp.setup({
   snippet = {
+    -- REQUIRED - you must specify a snippet engine
     expand = function(args)
-      luasnip.lsp_expand(args.body)
+      luasnip.lsp_expand(args.body) -- For `luasnip` users.
     end,
+  },
+  window = {
+    -- completion = cmp.config.window.bordered(),
+    -- documentation = cmp.config.window.bordered(),
   },
   mapping = cmp.mapping.preset.insert({
     ["<C-d>"] = cmp.mapping.scroll_docs(-4),
     ["<C-f>"] = cmp.mapping.scroll_docs(4),
     ["<C-Space>"] = cmp.mapping.complete(),
     ["<C-e>"] = cmp.mapping.close(),
-    ["<CR>"] = cmp.mapping.confirm({
-      behavior = cmp.ConfirmBehavior.Replace,
-      select = true,
-    }),
+    ["<CR>"] = cmp.mapping.confirm({ select = true }),
     ["<Tab>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
@@ -102,13 +84,58 @@ cmp.setup({
       end
     end, { "i", "s" }),
   }),
-  sources = {
-    { name = "luasnip" },
-    { name = "nvim_lsp" },
-    { name = "buffer" },
-    { name = "nvim_lua" },
-    { name = "path" },
-  },
+  sources = cmp.config.sources({
+    { name = 'nvim_lsp' },
+    { name = 'luasnip' }, -- For luasnip users.
+  }, {
+    { name = 'buffer' },
+  })
 })
 
+cmp.setup.filetype('gitcommit', {
+  sources = cmp.config.sources({
+    { name = 'cmp_git' }, -- You can specify the `cmp_git` source if you were installed it.
+  }, {
+    { name = 'buffer' },
+  })
+})
+
+cmp.setup.cmdline({ '/', '?' }, {
+  mapping = cmp.mapping.preset.cmdline(),
+  sources = {
+    { name = 'buffer' }
+  }
+})
+
+cmp.setup.cmdline(':', {
+  mapping = cmp.mapping.preset.cmdline(),
+  sources = cmp.config.sources({
+    { name = 'path' }
+  }, {
+    { name = 'cmdline' }
+  })
+})
+
+-- Set up lspconfig.
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
+
+local lspconfig = require("lspconfig")
+
+local servers = {
+  "tsserver",
+  "cssls",
+  "gopls",
+  "html",
+  "sumneko_lua",
+  "angularls",
+  "jsonls"
+}
+for _, lsp in ipairs(servers) do
+  lspconfig[lsp].setup({
+    capabilities = capabilities,
+  })
+end
+
+local cmp_autopairs = require("nvim-autopairs.completion.cmp")
 cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())

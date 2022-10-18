@@ -3,6 +3,8 @@ local xnoremap = require("keymap").xnoremap
 local inoremap = require("keymap").inoremap
 local tnoremap = require("keymap").tnoremap
 local wk = require("which-key")
+local lsp = vim.lsp
+local diagnostic = vim.diagnostic
 
 wk.register({
   ["<leader>"] = {
@@ -36,22 +38,26 @@ wk.register({
     },
     l = {
       name = "+LSP",
-      e = { vim.diagnostic.open_float, "Diagnostic" },
-      q = { vim.diagnostic.setloclist, "Diagnostic Loc List" },
-      f = { vim.lsp.buf.formatting, "Code Formatting" },
-      c = { vim.lsp.buf.code_action, "Code Action" },
-      R = { vim.lsp.buf.rename, "Rename" },
-      r = { vim.lsp.buf.references, "References" },
-      t = { vim.lsp.buf.type_definition, "Type Definition" },
-      d = { vim.lsp.buf.definition, "Definition" },
-      D = { vim.lsp.buf.declaration, "Declaration" },
-      i = { vim.lsp.buf.implementation, "implementation" }
+      e = { diagnostic.open_float, "Diagnostic" },
+      q = { "<cmd>Telescope diagnostics<cr>", "Diagnostic List" },
+      f = { lsp.buf.formatting, "Code Formatting" },
+      c = { lsp.buf.code_action, "Code Action" },
+      R = { lsp.buf.rename, "Rename" },
+      r = { lsp.buf.references, "References" },
+      t = { "<cmd>Telescope lsp_type_definitions<cr>", "Type Definition" },
+      d = { "<cmd>Telescope lsp_definitions<cr>", "Definition" },
+      D = { lsp.buf.declaration, "Declaration" },
+      i = { "<cmd>Telescope lsp_implementations<cr>", "implementation" }
     },
-    b = {
-      name = "+Buffer",
+    d = {
+      name = "+Delete",
       d = { "<cmd>%bd|e#<cr>", "Delete All Buffers" },
-      f = { "<cmd>Telescope buffers <cr>", "List Buffers" },
     },
+    s = {
+      name = "+Set",
+      f = { "<cmd>set foldmethod=syntax<cr>", "set foldmethod" },
+    },
+    b = { "<cmd>Telescope buffers <cr>", "List Buffers" },
     t = { function()
       require("nvterm.terminal").toggle "float"
     end, "Toggle Terminal" },
@@ -60,27 +66,25 @@ wk.register({
   },
 })
 
-nnoremap("<ESC>", "<cmd> noh <CR>")
+nnoremap("<ESC>", "<cmd>noh<CR>")
 nnoremap("<C-h>", "<C-w>h")
 nnoremap("<C-l>", "<C-w>l")
 nnoremap("<C-j>", "<C-w>j")
 nnoremap("<C-k>", "<C-w>k")
 nnoremap("<TAB>", "<cmd>bnext<cr>")
 nnoremap("<S-Tab>", "<cmd>bprevious<cr>")
-nnoremap("<C-n>", ":Neotree source=filesystem reveal=true position=float toggle=true<CR>")
-nnoremap("[d", vim.diagnostic.goto_prev)
-nnoremap("]d", vim.diagnostic.goto_next)
-nnoremap("gD", vim.lsp.buf.declaration)
-nnoremap("gd", vim.lsp.buf.definition)
-nnoremap("K", vim.lsp.buf.hover)
-nnoremap("gi", vim.lsp.buf.implementation)
-nnoremap("gr", vim.lsp.buf.references)
+nnoremap("<C-n>", ":Neotree source=filesystem reveal=true position=left toggle=true<CR>")
+nnoremap("[d", diagnostic.goto_prev)
+nnoremap("]d", diagnostic.goto_next)
+nnoremap("gD", lsp.buf.declaration)
+nnoremap("gd", lsp.buf.definition)
+nnoremap("K", lsp.buf.hover)
+nnoremap("gi", lsp.buf.implementation)
+nnoremap("gr", lsp.buf.references)
 nnoremap("++", "<Plug>kommentary_line_default")
 xnoremap("++", "<Plug>kommentary_visual_default")
-
 inoremap("jk", "<ESC>")
 inoremap("kj", "<ESC>")
-
 tnoremap("<ESC>", function()
   require("nvterm.terminal").toggle "float"
 end)

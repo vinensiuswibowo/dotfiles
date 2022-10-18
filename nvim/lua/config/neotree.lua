@@ -43,11 +43,11 @@ require("neo-tree").setup({
     },
     git_status = {
       symbols = {
-        added     = "", -- or "✚", but this is redundant info if you use git_status_colors on the name
-        modified  = "", -- or "", but this is redundant info if you use git_status_colors on the name
-        deleted   = "✖", -- this can only be used in the git_status source
-        renamed   = "", -- this can only be used in the git_status source
-        untracked = "",
+        added     = "+", -- or "✚", but this is redundant info if you use git_status_colors on the name
+        modified  = "", -- or "", but this is redundant info if you use git_status_colors on the name
+        deleted   = "x", -- this can only be used in the git_status source
+        renamed   = ">", -- this can only be used in the git_status source
+        untracked = "?",
         ignored   = "",
         unstaged  = "",
         staged    = "",
@@ -57,7 +57,7 @@ require("neo-tree").setup({
   },
   window = {
     position = "left",
-    width = 40,
+    width = 35,
     mapping_options = {
       noremap = true,
       nowait = true,
@@ -113,7 +113,7 @@ require("neo-tree").setup({
         --"thumbs.db"
       },
     },
-    follow_current_file = false, -- This will find and focus the file in the active buffer every
+    follow_current_file = true, -- This will find and focus the file in the active buffer every
     group_empty_dirs = false, -- when true, empty folders will be grouped together
     hijack_netrw_behavior = "open_default", -- netrw disabled, opening a directory opens neo-tree
     use_libuv_file_watcher = false, -- This will use the OS level file watchers to detect changes

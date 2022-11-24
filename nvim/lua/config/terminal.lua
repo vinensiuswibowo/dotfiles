@@ -1,4 +1,6 @@
-require("nvterm").setup({
+local vim = vim
+
+local M = {
   terminals = {
     shell = vim.o.shell,
     list = {},
@@ -23,4 +25,5 @@ require("nvterm").setup({
     close_on_exit = true,
     auto_insert = false,
   },
-})
+}
+return M

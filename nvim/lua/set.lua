@@ -1,7 +1,6 @@
+local vim = vim
 local opt = vim.opt
 local g = vim.g
-local api = vim.api
-local cmd = vim.cmd
 
 opt.expandtab = true
 opt.shiftwidth = 2
@@ -24,16 +23,21 @@ opt.signcolumn = "yes"
 opt.splitbelow = true
 opt.splitright = true
 opt.termguicolors = true
--- opt.timeoutlen = 200
+opt.timeoutlen = 200
 opt.undofile = true
--- opt.updatetime = 250
+opt.updatetime = 250
 opt.relativenumber = true
 opt.wrap = false
 opt.cursorline = true
 opt.swapfile = false
 opt.list = true
 opt.listchars:append("eol:↴")
-opt.winbar = "%=%m %f | %l,%c | %p%%"
+opt.winbar = "%f %=%m | %l,%c | %p%%"
+vim.o.foldcolumn = '0' -- '0' is not bad
+vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
+vim.o.foldlevelstart = 99
+vim.o.foldenable = true
+vim.api.nvim_set_hl(0, "WinBarSeparator", { fg = "#444444" })
 
 
 local default_plugins = {
@@ -69,6 +73,9 @@ for _, plugin in pairs(default_plugins) do
   g["loaded_" .. plugin] = 1
 end
 
+
 g.mapleader = " "
 g.kommentary_create_default_mappings = false
 g.loaded_python_provider = 0
+g.tokyonight_sidebars = { "qf", "vista_kind", "terminal", "packer" }
+g.tokyonight_italic_functions = true

@@ -1,4 +1,4 @@
-require("neo-tree").setup({
+local M = {
   close_if_last_window = false, -- Close Neo-tree if it is the last window left in the tab
   popup_border_style = "rounded",
   enable_git_status = true,
@@ -56,7 +56,7 @@ require("neo-tree").setup({
     },
   },
   window = {
-    position = "left",
+    position = "float",
     width = 35,
     mapping_options = {
       noremap = true,
@@ -90,7 +90,7 @@ require("neo-tree").setup({
       ["p"] = "paste_from_clipboard",
       ["c"] = "copy", -- takes text input for destination, also accepts the optional config.show_path option like "add":
       ["m"] = "move", -- takes text input for destination, also accepts the optional config.show_path option like "add".
-      ["q"] = "close_window",
+      ["<esc>"] = "close_window",
       ["R"] = "refresh",
       ["?"] = "show_help",
     }
@@ -157,5 +157,7 @@ require("neo-tree").setup({
         ["gg"] = "git_commit_and_push",
       }
     }
-  }
-})
+  },
+}
+
+return M

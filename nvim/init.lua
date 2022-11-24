@@ -1,1 +1,3 @@
-require("init")
+require("plugins");
+require("set");
+require("remap");

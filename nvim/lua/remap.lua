@@ -1,14 +1,25 @@
-local nnoremap = require("keymap").nnoremap
-local xnoremap = require("keymap").xnoremap
-local inoremap = require("keymap").inoremap
-local tnoremap = require("keymap").tnoremap
 local wk = require("which-key")
 local lsp = vim.lsp
 local diagnostic = vim.diagnostic
 
+
+local function bind(op, outer_opts)
+  outer_opts = outer_opts or { noremap = true }
+  return function(lhs, rhs, opts)
+    opts = vim.tbl_extend("force", outer_opts, opts or {})
+    vim.keymap.set(op, lhs, rhs, opts)
+  end
+end
+
+local nnoremap = bind("n")
+local inoremap = bind("i")
+local xnoremap = bind("x")
+local tnoremap = bind("t")
+
 wk.register({
   ["<leader>"] = {
-    q = { "<cmd>bdelete<cr>", "Close Buffer" },
+    q = { "<cmd>BufferClose<cr>", "Close Buffer" },
+    n = { "<cmd>Neotree source=filesystem reveal=true toggle=true<CR>", "Toggle File Tree" },
     f = {
       name = "+Find",
       n = { "<cmd>enew<cr>", "New File" },
@@ -23,7 +34,7 @@ wk.register({
       name = "+Git",
       c = { "<cmd>Git commit <CR>", "Commit" },
       l = { "<cmd>Telescope git_commits <CR>", "Log" },
-      s = { "<cmd>Telescope git_status <CR>", "Status" },
+      s = { "<cmd>Neotree float git_status <CR>", "Status" },
       b = { "<cmd>Telescope git_branches <CR>", "Branches" },
       B = { "<cmd>Git blame <CR>", "Blame" },
     },
@@ -40,7 +51,7 @@ wk.register({
       name = "+LSP",
       e = { diagnostic.open_float, "Diagnostic" },
       q = { "<cmd>Telescope diagnostics<cr>", "Diagnostic List" },
-      f = { lsp.buf.formatting, "Code Formatting" },
+      f = { lsp.buf.format, "Code Formatting" },
       c = { lsp.buf.code_action, "Code Action" },
       R = { lsp.buf.rename, "Rename" },
       r = { lsp.buf.references, "References" },
@@ -48,6 +59,10 @@ wk.register({
       d = { "<cmd>Telescope lsp_definitions<cr>", "Definition" },
       D = { lsp.buf.declaration, "Declaration" },
       i = { "<cmd>Telescope lsp_implementations<cr>", "implementation" }
+    },
+    r = {
+      name = "+ Rest",
+      r = { "<Plug>RestNvim<cr>", "Send Request" }
     },
     d = {
       name = "+Delete",
@@ -71,9 +86,8 @@ nnoremap("<C-h>", "<C-w>h")
 nnoremap("<C-l>", "<C-w>l")
 nnoremap("<C-j>", "<C-w>j")
 nnoremap("<C-k>", "<C-w>k")
-nnoremap("<TAB>", "<cmd>bnext<cr>")
-nnoremap("<S-Tab>", "<cmd>bprevious<cr>")
-nnoremap("<C-n>", ":Neotree source=filesystem reveal=true position=left toggle=true<CR>")
+nnoremap("<TAB>", "<cmd>BufferNext<cr>")
+nnoremap("<S-Tab>", "<cmd>BufferPrevious<cr>")
 nnoremap("[d", diagnostic.goto_prev)
 nnoremap("]d", diagnostic.goto_next)
 nnoremap("gD", lsp.buf.declaration)
@@ -88,3 +102,5 @@ inoremap("kj", "<ESC>")
 tnoremap("<ESC>", function()
   require("nvterm.terminal").toggle "float"
 end)
+nnoremap('zR', require('ufo').openAllFolds)
+nnoremap('zM', require('ufo').closeAllFolds)

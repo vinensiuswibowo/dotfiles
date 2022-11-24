@@ -1,4 +1,4 @@
-require("which-key").setup({
+local M = {
   icons = {
     breadcrumb = "»",
     separator = "  ",
@@ -22,4 +22,6 @@ require("which-key").setup({
     i = { "j", "k" },
     v = { "j", "k" },
   },
-})
+}
+
+return M

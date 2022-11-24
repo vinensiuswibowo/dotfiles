@@ -1,4 +1,4 @@
-require("gitsigns").setup({
+local M = {
   signs = {
     add = { hl = "DiffAdd", text = " +", numhl = "GitSignsAddNr" },
     change = { hl = "DiffChange", text = " ~", numhl = "GitSignsChangeNr" },
@@ -6,4 +6,6 @@ require("gitsigns").setup({
     topdelete = { hl = "DiffDelete", text = " ‾", numhl = "GitSignsDeleteNr" },
     changedelete = { hl = "DiffChangeDelete", text = " ~", numhl = "GitSignsChangeNr" },
   },
-})
+}
+
+return M

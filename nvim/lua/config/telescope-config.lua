@@ -1,4 +1,4 @@
-require("telescope").setup({
+local M = {
   defaults = {
     vimgrep_arguments = {
       "rg",
@@ -43,5 +43,6 @@ require("telescope").setup({
       n = { ["q"] = require("telescope.actions").close },
     },
   },
-  -- extensions_list = { "themes", "terms" },
-})
+}
+
+return M

@@ -10,7 +10,7 @@ local servers = {
   "html",
   "sumneko_lua",
   "angularls",
-  "jsonls"
+  "jsonls",
 }
 
 local capabilities = require('cmp_nvim_lsp').default_capabilities()

@@ -20,21 +20,14 @@ wk.register({
   ["<leader>"] = {
     q = { "<cmd>BufferClose<cr>", "Close Buffer" },
     n = { "<cmd>Neotree source=filesystem reveal=true toggle=true<CR>", "Toggle File Tree" },
-    f = {
-      name = "+Find",
-      n = { "<cmd>enew<cr>", "New File" },
-      f = { "<cmd>Telescope find_files<cr>", "Find File" },
-      a = { "<cmd>Telescope find_files follow=true no_ignore=true hidden=true <CR>", "Find All File" },
-      o = { "<cmd>Telescope oldfiles<cr>", "Open Recent File" },
-      w = { "<cmd>Telescope live_grep<cr>", "Live Grep" },
-      k = { "<cmd>Telescope keymaps <CR>", "Keymaps" },
-      r = { "<cmd>lua require('spectre').open() <cr>", "Find and Replace" }
-    },
+    f = { "<cmd>Telescope find_files<cr>", "Find File" },
+    F = { "<cmd>lua require('spectre').open() <cr>", "Find and Replace" },
+    w = { "<cmd>Telescope live_grep<cr>", "Live Grep" },
     g = {
       name = "+Git",
       c = { "<cmd>Git commit <CR>", "Commit" },
       l = { "<cmd>Telescope git_commits <CR>", "Log" },
-      s = { "<cmd>Neotree float git_status <CR>", "Status" },
+      s = { "<cmd>Telescope git_status <CR>", "Status" },
       b = { "<cmd>Telescope git_branches <CR>", "Branches" },
       B = { "<cmd>Git blame <CR>", "Blame" },
     },
@@ -61,16 +54,12 @@ wk.register({
       i = { "<cmd>Telescope lsp_implementations<cr>", "implementation" }
     },
     r = {
-      name = "+ Rest",
+      name = "+ Rest Request",
       r = { "<Plug>RestNvim<cr>", "Send Request" }
     },
     d = {
       name = "+Delete",
       d = { "<cmd>%bd|e#<cr>", "Delete All Buffers" },
-    },
-    s = {
-      name = "+Set",
-      f = { "<cmd>set foldmethod=syntax<cr>", "set foldmethod" },
     },
     b = { "<cmd>Telescope buffers <cr>", "List Buffers" },
     t = { function()

@@ -1,6 +1,7 @@
 local cmd = vim.cmd
 
-cmd([[colorscheme tokyonight-night]])
+-- cmd([[colorscheme tokyonight-night]])
+cmd([[colorscheme kanagawa]])
 cmd([[autocmd BufWritePre * lua vim.lsp.buf.formatting_sync()]])
 require("config.statusline")
 local servers = {

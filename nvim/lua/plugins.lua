@@ -1,24 +1,68 @@
 local vim = vim;
+local install_path = vim.fn.stdpath 'data' .. '/site/pack/packer/start/packer.nvim'
+local is_bootstrap = false
+if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
+  is_bootstrap = true
+  vim.fn.system { 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path }
+  vim.cmd [[packadd packer.nvim]]
+end
 
-vim.cmd [[packadd packer.nvim]]
-vim.cmd([[
-  augroup packer_user_config
-    autocmd!
-    autocmd BufWritePost plugins.lua source <afile> | PackerCompile
-  augroup end
-]])
+require("packer").startup(function(use)
+  use({ "wbthomason/packer.nvim" })
 
-return require("packer").startup(function(use)
-  use({ "wbthomason/packer.nvim", module = "plenary" })
-  use({ "nvim-lua/plenary.nvim" })
-  use({ "kyazdani42/nvim-web-devicons" })
+  use {
+    'neovim/nvim-lspconfig',
+    requires = {
+      'williamboman/mason.nvim',
+      'williamboman/mason-lspconfig.nvim',
+      'j-hui/fidget.nvim',
+      'folke/neodev.nvim',
+    },
+    config = function()
+      require("config.lsp-config")
+    end
+  }
+  use 'nvim-tree/nvim-web-devicons'
+  use {
+    'romgrk/barbar.nvim',
+    requires = 'nvim-web-devicons'
+  }
+
+  use {
+    'nvim-lualine/lualine.nvim',
+    config = function()
+      require("config.lualine-config")
+    end
+  }
+
+  use {
+    'hrsh7th/nvim-cmp',
+    requires = {
+      'hrsh7th/cmp-nvim-lsp',
+      "rafamadriz/friendly-snippets",
+      "hrsh7th/cmp-buffer",
+      "hrsh7th/cmp-path",
+      'L3MON4D3/LuaSnip',
+      "hrsh7th/nvim-cmp",
+      'saadparwaiz1/cmp_luasnip',
+      'hrsh7th/cmp-nvim-lua',
+    },
+    config = function()
+      require("config.cmp-config")
+    end
+  }
+
   use({ "MunifTanjim/nui.nvim" })
   use({ "b3nj5m1n/kommentary" })
-  use({ "lukas-reineke/indent-blankline.nvim", config = function()
-    require("config.blankline")
-  end })
+  use({
+    "lukas-reineke/indent-blankline.nvim",
+    config = function()
+      require("config.blankline")
+    end
+  })
 
-  use({ "rebelot/kanagawa.nvim",
+  use({
+    "rebelot/kanagawa.nvim",
     config = function()
       require("kanagawa").setup(require("config.theme"))
     end
@@ -26,15 +70,20 @@ return require("packer").startup(function(use)
 
   use({
     "nvim-telescope/telescope.nvim",
+    requires = {
+      'nvim-lua/plenary.nvim'
+    },
     config = function()
       require("telescope").setup(require("config.telescope-config"))
     end
   })
 
-  use({ "lewis6991/gitsigns.nvim",
+  use({
+    "lewis6991/gitsigns.nvim",
     config = function()
       require("gitsigns").setup(require("config.gitsign-config"))
-    end })
+    end
+  })
 
   use({
     "nvim-treesitter/nvim-treesitter",
@@ -51,7 +100,7 @@ return require("packer").startup(function(use)
     branch = "v2.x",
     requires = {
       "nvim-lua/plenary.nvim",
-      "kyazdani42/nvim-web-devicons", -- not strictly required, but recommended
+      "kyazdani42/nvim-web-devicons",
       "MunifTanjim/nui.nvim",
     },
     config = function()
@@ -75,7 +124,8 @@ return require("packer").startup(function(use)
     end
   })
 
-  use({ 'phaazon/hop.nvim',
+  use({
+    'phaazon/hop.nvim',
     branch = 'v2',
     config = function()
       require("hop").setup({ keys = 'etovxqpdygfblzhckisuran' })
@@ -97,39 +147,6 @@ return require("packer").startup(function(use)
     end,
   })
 
-
-  use({ "williamboman/nvim-lsp-installer",
-    config = function()
-      require("config.lsp-installer")
-    end
-  })
-
-  use({ "neovim/nvim-lspconfig",
-    config = function()
-      require("config.lsp-config")
-    end
-  })
-
-  use({ "rafamadriz/friendly-snippets",
-    module = { "cmp", "cmp_nvim_lsp" },
-    event = "InsertEnter"
-  })
-
-  use({ "hrsh7th/nvim-cmp",
-    after = "friendly-snippets",
-    config = function()
-      require("config.cmp-config")
-    end,
-  })
-
-  use({ "L3MON4D3/LuaSnip",
-    wants = "friendly-snippets",
-    after = "nvim-cmp",
-    config = function()
-      require("config.luasnip-config")
-    end,
-  })
-
   use({
     "windwp/nvim-autopairs",
     after = "nvim-cmp",
@@ -138,55 +155,40 @@ return require("packer").startup(function(use)
     end
   })
 
-  use({ "saadparwaiz1/cmp_luasnip",
-    after = "LuaSnip"
-  })
-
-  use({ "hrsh7th/cmp-nvim-lua",
-    after = "cmp_luasnip"
-  })
-
-  use({ "hrsh7th/cmp-nvim-lsp",
-    after = "cmp-nvim-lua"
-  })
-  use({ "hrsh7th/cmp-buffer",
-    after = "cmp-nvim-lsp"
-  })
-  use({ "hrsh7th/cmp-path",
-    after = "cmp-buffer"
-  })
-  use({ "hrsh7th/cmp-cmdline",
-    after = "cmp-path"
-  })
-
-  use({ "kevinhwang91/nvim-ufo",
+  use({
+    "kevinhwang91/nvim-ufo",
     requires = 'kevinhwang91/promise-async',
     config = function()
       require("config.fold-config")
     end
   })
 
-  use({ "NTBBloodbath/rest.nvim",
+  use({
+    "NTBBloodbath/rest.nvim",
     requires = { "nvim-lua/plenary.nvim" },
     config = function()
       require("config.rest-config")
     end
   })
 
-  use({ 'romgrk/barbar.nvim',
-    requires = { 'kyazdani42/nvim-web-devicons' }
-  })
-
-  use({ 'jose-elias-alvarez/null-ls.nvim',
-    config = function()
-      require("config.null-ls-config")
-    end
-  })
-
-  use({ "MunifTanjim/prettier.nvim",
-    config = function()
-      require("config.prettier-config")
-    end
-  })
-
+  if is_bootstrap then
+    require('packer').sync()
+  end
 end)
+
+
+if is_bootstrap then
+  print '=================================='
+  print '    Plugins are being installed'
+  print '    Wait until Packer completes,'
+  print '       then restart nvim'
+  print '=================================='
+  return
+end
+
+local packer_group = vim.api.nvim_create_augroup('Packer', { clear = true })
+vim.api.nvim_create_autocmd('BufWritePost', {
+  command = 'source <afile> | silent! LspStop | silent! LspStart | PackerCompile',
+  group = packer_group,
+  pattern = vim.fn.expand '$MYVIMRC',
+})

@@ -17,53 +17,53 @@ local xnoremap = bind("x")
 local tnoremap = bind("t")
 
 wk.register({
-  ["<leader>"] = {
-    q = { "<cmd>BufferClose<cr>", "Close Buffer" },
-    n = { "<cmd>Neotree source=filesystem reveal=true toggle=true<CR>", "Toggle File Tree" },
-    f = { "<cmd>Telescope find_files<cr>", "Find File" },
-    F = { "<cmd>lua require('spectre').open() <cr>", "Find and Replace" },
-    w = { "<cmd>Telescope live_grep<cr>", "Live Grep" },
-    g = {
-      name = "+Git",
-      c = { "<cmd>Git commit <CR>", "Commit" },
-      l = { "<cmd>Telescope git_commits <CR>", "Log" },
-      s = { "<cmd>Telescope git_status <CR>", "Status" },
-      b = { "<cmd>Telescope git_branches <CR>", "Branches" },
-      B = { "<cmd>Git blame <CR>", "Blame" },
-      o = { "<Plug>(git-conflict-ours)", "Use Ours" },
-      t = { "<Plug>(git-conflict-theirs)", "Use Theirs" },
-      h = { "<Plug>(git-conflict-both)", "Use Both" },
-      p = { "<Plug>(git-conflict-prev-conflict)", "Prev Conflict" },
-      n = { "<Plug>(git-conflict-next-conflict)", "Next Conflict" },
+    ["<leader>"] = {
+        q = { "<cmd>BufferClose<cr>", "Close Buffer" },
+        n = { "<cmd>Neotree source=filesystem reveal=true toggle=true<CR>", "Toggle File Tree" },
+        f = { "<cmd>Telescope find_files<cr>", "Find File" },
+        F = { "<cmd>lua require('spectre').open() <cr>", "Find and Replace" },
+        w = { "<cmd>Telescope live_grep<cr>", "Live Grep" },
+        g = {
+            name = "+Git",
+            c = { "<cmd>Git commit <CR>", "Commit" },
+            l = { "<cmd>Telescope git_commits <CR>", "Log" },
+            s = { "<cmd>Telescope git_status <CR>", "Status" },
+            b = { "<cmd>Telescope git_branches <CR>", "Branches" },
+            B = { "<cmd>Git blame <CR>", "Blame" },
+            o = { "<Plug>(git-conflict-ours)", "Use Ours" },
+            t = { "<Plug>(git-conflict-theirs)", "Use Theirs" },
+            h = { "<Plug>(git-conflict-both)", "Use Both" },
+            p = { "<Plug>(git-conflict-prev-conflict)", "Prev Conflict" },
+            n = { "<Plug>(git-conflict-next-conflict)", "Next Conflict" },
+        },
+        c = { lsp.buf.code_action, "LSP Code Action" },
+        l = {
+            name = "+LSP",
+            e = { diagnostic.open_float, "Diagnostic" },
+            q = { require('telescope.builtin').diagnostics, "Diagnostic List" },
+            f = { lsp.buf.format, "Code Formatting" },
+            R = { lsp.buf.rename, "Rename" },
+            r = { require('telescope.builtin').lsp_references, "References" },
+            d = { require('telescope.builtin').lsp_type_definitions, "Type Definition" },
+            D = { require('telescope.builtin').lsp_definitions, "Definition" },
+            i = { require('telescope.builtin').lsp_implementations, "implementation" },
+            s = { require('telescope.builtin').lsp_document_symbols, "Symbols" }
+        },
+        r = {
+            name = "+ Rest Request",
+            r = { "<Plug>RestNvim<cr>", "Send Request" }
+        },
+        d = {
+            name = "+Delete",
+            d = { "<cmd>%bd|e#<cr>", "Delete All Buffers" },
+        },
+        b = { "<cmd>Telescope buffers <cr>", "List Buffers" },
+        t = { function()
+          require("nvterm.terminal").toggle "float"
+        end, "Toggle Terminal" },
+        j = { "<cmd>HopWordMW<cr>", "Jump Word" },
+        L = { "<cmd>HopLineStartMW<cr>", "Jump Line" },
     },
-    c = { lsp.buf.code_action, "LSP Code Action" },
-    l = {
-      name = "+LSP",
-      e = { diagnostic.open_float, "Diagnostic" },
-      q = { "<cmd>Telescope diagnostics<cr>", "Diagnostic List" },
-      f = { lsp.buf.format, "Code Formatting" },
-      R = { lsp.buf.rename, "Rename" },
-      r = { lsp.buf.references, "References" },
-      t = { "<cmd>Telescope lsp_type_definitions<cr>", "Type Definition" },
-      d = { "<cmd>Telescope lsp_definitions<cr>", "Definition" },
-      D = { lsp.buf.declaration, "Declaration" },
-      i = { "<cmd>Telescope lsp_implementations<cr>", "implementation" }
-    },
-    r = {
-      name = "+ Rest Request",
-      r = { "<Plug>RestNvim<cr>", "Send Request" }
-    },
-    d = {
-      name = "+Delete",
-      d = { "<cmd>%bd|e#<cr>", "Delete All Buffers" },
-    },
-    b = { "<cmd>Telescope buffers <cr>", "List Buffers" },
-    t = { function()
-      require("nvterm.terminal").toggle "float"
-    end, "Toggle Terminal" },
-    j = { "<cmd>HopWordMW<cr>", "Jump Word" },
-    L = { "<cmd>HopLineStartMW<cr>", "Jump Line" },
-  },
 })
 
 nnoremap("<ESC>", "<cmd>noh<CR>")
